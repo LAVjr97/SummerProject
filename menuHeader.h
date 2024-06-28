@@ -32,7 +32,7 @@ namespace menu{
         double cost = .99;
 
 
-        system("clear"); 
+        system("cls"); 
         cout << "\nhandleDropOff";
 
         dropOff = options::getDate();
