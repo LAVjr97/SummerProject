@@ -5,4 +5,4 @@ project("DryCleaners")
 add_executable("${PROJECT_NAME}" "src/main.cpp" "src/order.cpp")
 
 install(TARGETS "${PROJECT_NAME}" DESTINATION bin) #$(CMAKE_INSTALL_PREFIX)/bin <= basically the bin folder where cmake is installed. 
-install(FILES "main.cpp menuHeader.h" DESTINATION src) #$(CMAKE_INSTALL_PREFIX)/src
+#install(FILES "" DESTINATION src) #$(CMAKE_INSTALL_PREFIX)/src

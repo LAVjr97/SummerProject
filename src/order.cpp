@@ -3,7 +3,7 @@
 using namespace OrderInfo;
 
 //Constructor
-order::order(std::string* dropOff, std::string* pickUp, int* description, double cost){
+order::order(std::string dropOff, std::string pickUp, int* description, double cost){
     //generateID();
     order::dropOffDate = dropOff;
     order::pickUpDate = pickUp;
@@ -12,15 +12,19 @@ order::order(std::string* dropOff, std::string* pickUp, int* description, double
 }
 
 //Get Functions
-int order::getid() const{
-    return id;
+int order::getCustomerID() const{
+    return customerID;
 }
 
-std::string* order::getDropOffDate() const{
+int order::getOrderID() const{
+    return orderID;
+}
+
+std::string order::getDropOffDate() const{
     return dropOffDate; 
 }
 
-std::string* order::getPickUpDate() const{
+std::string order::getPickUpDate() const{
     return pickUpDate;
 }
 
@@ -33,18 +37,23 @@ double order::getCost() const{
 }
 
 //Set Functions
-int order::generateID(){
-    order::id = 10;
+int order::setCustomerID(int id){
+    order::customerID = id;
     return 0;
 }
 
-int order::setDropOffDate(std::string* date){
+int order::generateOrderID(){
+    order::orderID = 10;
+    return 0;
+}
+
+int order::setDropOffDate(std::string date){
     //date = new std::string[2];
     order::dropOffDate = date;
     return 0;
 }
 
-int order::setPickUpDate(std::string *date){
+int order::setPickUpDate(std::string date){
     order::pickUpDate = date;
     return 0;
 }
@@ -59,3 +68,7 @@ int order::setCost(double cost){
     return 0; 
 }
 
+double order::calculateCost(int* articles) {
+
+    return 0;
+}
