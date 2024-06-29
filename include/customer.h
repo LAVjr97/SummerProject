@@ -2,12 +2,12 @@
 #include <cassert>
 
 namespace cust{
-	class customer {
+	class customer{ 
 		public: 
-			//Constructors
+			//Constructors 
 			customer(); 
 
-			//Get functions
+			//Get functions 
 			int getCustomerID() const; 
 			std::string getName() const; 
 			std::string getPhone() const; 
@@ -16,13 +16,12 @@ namespace cust{
 			double getTotal() const; 
 
 			//Set functions
-			int generateCustomerID();
-			int setName();
-			int setPhone();
-			int updateLastVisit();
-			int updateVisits();
-			int updateTotal();
-
+			int setCustomerID(int id);
+			int setName(std::string name);
+			int setPhone(std::string phone);
+			int updateLastVisit(std::string lastVisit);
+			int updateVisits(int visits);
+			int updateTotal(double total);
 
 		private:
 			int customerID;
@@ -31,8 +30,8 @@ namespace cust{
 			std::string lastVisit;
 			int visits;
 			double total;
-
 	};
 }
+
 
 
