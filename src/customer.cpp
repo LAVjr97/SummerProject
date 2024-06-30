@@ -28,15 +28,27 @@ double customer::getTotal() const{
 }
 
 int customer::setCustomerID(int id) {
-	
+	customer::customerID = id; 
 	return 0;
 }
 int customer::setName(std::string name) {
-
+	customer::name = name;
 	return 0;
 }
 
-int setPhone(std::string phone);
-int updateLastVisit(std::string lastVisit);
-int updateVisits(int visits);
-int updateTotal(double total);
+int customer::setPhone(std::string phone){
+	customer::phone = phone;
+	return 0;
+}
+int customer::updateLastVisit(std::string lastVisit){
+	customer::lastVisit = lastVisit;
+	return 0;
+}
+int customer::updateVisits(int visits){
+	customer::visits = visits;
+	return 0;
+}
+int customer::updateTotal(double total){
+	customer::total = total;
+	return 0;
+}

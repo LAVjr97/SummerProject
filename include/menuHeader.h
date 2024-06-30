@@ -29,7 +29,7 @@ namespace menu{
         std::string dropOff;
         std::string* pickUp;
         int* articles = new int[8];
-        double cost = .99;
+        double cost = 0.99;
 
 
         system("cls"); 
