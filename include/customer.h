@@ -5,7 +5,8 @@ namespace cust{
 	class customer{ 
 		public: 
 			//Constructors 
-			customer(); 
+			customer(std::string name, std::string phone);
+			customer(std::string name);
 
 			//Get functions 
 			int getCustomerID() const; 
@@ -24,12 +25,12 @@ namespace cust{
 			int updateTotal(double total);
 
 		private:
-			int customerID;
-			std::string name;
-			std::string phone;
-			std::string lastVisit;
-			int visits;
-			double total;
+			int customerID; 
+			std::string name; 
+			std::string phone; 
+			std::string lastVisit; 
+			int visits; 
+			double total;  
 	};
 }
 

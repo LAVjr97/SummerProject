@@ -2,6 +2,18 @@
 
 using namespace cust;
 
+//Constructor
+customer::customer(std::string name, std::string phone){
+	customer::name = name;
+	customer::phone = phone; 
+	customer::
+	customer::total = total;
+
+}
+
+customer::customer(std::string name){
+
+}
 
 //Get functions 
 int customer::getCustomerID() const{
