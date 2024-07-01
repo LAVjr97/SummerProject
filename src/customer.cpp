@@ -1,4 +1,4 @@
-#include "include/customer.h";
+#include "include/customer.h"
 
 using namespace cust;
 
@@ -6,7 +6,7 @@ using namespace cust;
 customer::customer(std::string name, std::string phone){
 	customer::name = name;
 	customer::phone = phone; 
-	customer::
+	customer::visits = 0;
 	customer::total = total;
 
 }
