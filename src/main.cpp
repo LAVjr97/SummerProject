@@ -32,7 +32,7 @@ int printMenu(){
 
 int input(int option){
     switch (option){
-    case 1:
+    case 1: 
         menu::options::handleDropOff();
         break;
     case 2: 

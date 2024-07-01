@@ -18,7 +18,8 @@ namespace menu{
             static int handlePickUp();
             static int handleLookUp();
             static int handleHistory();
-            
+            static std::array<std::tuple<int, double>, 8> handleArticles();
+
             static std::string getDate();
 
         private: 

@@ -3,7 +3,7 @@
 using namespace OrderInfo;
 
 //Constructor
-order::order(std::string name, std::string dropOff, std::string pickUp, int* description, double cost){
+order::order(std::string name, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost){
     //generateID();
     order::dropOffDate = dropOff;
     order::pickUpDate = pickUp;
@@ -33,7 +33,7 @@ std::string order::getPickUpDate() const{
     return pickUpDate;
 }
 
-int* order::getDetails() const{
+std::array<std::tuple<int, double>, 8> order::getDetails() const{
     return articles;
 }
 
@@ -68,7 +68,7 @@ int order::setPickUpDate(std::string date){
     return 0;
 }
 
-int order::setDetails(int* articles){
+int order::setDetails(std::array<std::tuple<int, double>, 8> articles){
     order::articles = articles;
     return 0;
 }

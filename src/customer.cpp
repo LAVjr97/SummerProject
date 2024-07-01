@@ -1,4 +1,4 @@
-#include "include/customer.h"
+#include "../include/customer.h"
 
 using namespace cust;
 
@@ -39,6 +39,7 @@ double customer::getTotal() const{
 	return total;
 }
 
+//Set functions
 int customer::setCustomerID(int id) {
 	customer::customerID = id; 
 	return 0;
