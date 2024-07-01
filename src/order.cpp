@@ -3,12 +3,13 @@
 using namespace OrderInfo;
 
 //Constructor
-order::order(std::string dropOff, std::string pickUp, int* description, double cost){
+order::order(std::string name, std::string dropOff, std::string pickUp, int* description, double cost){
     //generateID();
     order::dropOffDate = dropOff;
     order::pickUpDate = pickUp;
     order::articles = description;
     order::cost = cost; 
+    
 }
 
 //Get Functions
@@ -18,6 +19,10 @@ int order::getCustomerID() const{
 
 int order::getOrderID() const{
     return orderID;
+}
+
+std::string order::getName() const{
+    return name;
 }
 
 std::string order::getDropOffDate() const{
@@ -44,6 +49,11 @@ int order::setCustomerID(int id){
 
 int order::generateOrderID(){
     order::orderID = 10;
+    return 0;
+}
+
+int order::setName(std::string name){
+    order::name = name;
     return 0;
 }
 
