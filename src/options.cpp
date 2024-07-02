@@ -13,20 +13,16 @@ int options::handleDropOff() {
     double cost = 0.99;
 
     cout << "\nCustomer Name:\n";
+    cin >> name;
 
-    cin >> pickUp;
-
-    cout << "\n ";
-    //cin >> 
-    //cout << "\n ";
-    cout << "\nPick Up Date? <mm/dd/yy>";
+    cout << "\nPick Up Date? <mm/dd/yy>\n";
     cin >> date;
 
-    cout << "\nTime? <hh:mm pm>";
+    cout << "\nTime? <hh:mm pm>\n";
     cin >> time;
     pickUp = date + " " + time;
 
-
+    
 
     //OrderInfo::order customerOrder();
     OrderInfo::order orderA(name, dropOff, pickUp, articles, cost);
@@ -54,31 +50,62 @@ int options::handleHistory() {
     return 0;
 }
 
-std::array<std::tuple<int, double>, 8> handleArticles() {
-    std::array<std::tuple<int, double>, 8> articles;
-    for(int i; i < 8; i++){
-        switch (i) {
-            case 0:
-                cout << "\n Number of pants?"
-                articles
-            case 1: 
+std::array<std::tuple<int, double>, 8> handleArticles() { 
+    //[0]: Shirts, [1]: Pants, [2]:Sweaters, [3]:Coats, [4]:Blouses, [5]:2pc Suit, [6]:Jacket, [7]:Vest 
+    std::array<std::tuple<int, double>, 8> articles; 
+    int article, n;
+
+    while(true){
+        cout << "\nEnter article number (or '0' to go save and return):\n1) Shirts\n2) Pants\n3) Sweaters\n4) Coats\n5) Blouses\n6) 2pc Suit\n7) Jackets\n7) Vest\n";
+        cin >> article;
+
+        switch(article){
+            case 1:
+                cout << "\nNumber of Shirt(s)?\n";
+                cin >> n; 
+                articles[0] = std::make_tuple(n, 4.99);
 
             case 2: 
+                cout << "\nNumber of Pant(s)?\n";
+                cin >> n; 
+                articles[1] = std::make_tuple(n, 4.99);
 
-            case 3:
+            case 3: 
+                cout << "\nNumber of Sweater(s)?\n";
+                cin >> n; 
+                articles[2] = std::make_tuple(n, 5.99);
 
             case 4: 
+                cout << "\nNumber of Coat(s)?\n";
+                cin >> n; 
+                articles[3] = std::make_tuple(n, 6.99);
 
             case 5: 
+                cout << "\nNumber of Blouse(s)?\n";
+                cin >> n; 
+                articles[3] = std::make_tuple(n, 4.50);
 
             case 6: 
+                cout << "\nNumber of 2pc Suit(s)?\n";
+                cin >> n; 
+                articles[4] = std::make_tuple(n, 12.99);
 
-            case 7:
+            case 7: 
+                cout << "\nNumber of Jacket(s)?\n";
+                cin >> n; 
+                articles[4] = std::make_tuple(n, 6.99);
+
+            case 8: 
+                cout << "\nNumber of Vest(s)?\n";
+                cin >> n; 
+                articles[4] = std::make_tuple(n, 3.99);
+            
+            case 0: 
+                return articles; 
+            default: 
+                continue;
         }
     }
-
-
-
     return articles;
 }
 

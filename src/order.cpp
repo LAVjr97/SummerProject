@@ -9,7 +9,6 @@ order::order(std::string name, std::string dropOff, std::string pickUp, std::arr
     order::pickUpDate = pickUp;
     order::articles = description;
     order::cost = cost; 
-    
 }
 
 //Get Functions
