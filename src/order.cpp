@@ -1,17 +1,17 @@
 #include "../include/order.h"
 
-using namespace OrderInfo;
+using namespace orderInfo;
 
 //Constructor
-order::order(std::string name, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost){
-    //generateID();
+order::order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost){
+    order::orderID = order::generateOrderID();
     order::dropOffDate = dropOff;
     order::pickUpDate = pickUp;
     order::articles = description;
     order::cost = cost; 
 }
 
-//Get Functions
+/*Get Functions*/
 int order::getCustomerID() const{
     return customerID;
 }
@@ -40,7 +40,7 @@ double order::getCost() const{
     return cost;
 }
 
-//Set Functions
+/*Set Functions*/
 int order::setCustomerID(int id){
     order::customerID = id;
     return 0;
@@ -78,6 +78,12 @@ int order::setCost(double cost){
 }
 
 double order::calculateCost(int* articles) {
-
     return 0;
+}
+
+int generateOrderID(){ 
+    int id; 
+    //pull up latest id used, "++"" it, update and save the latest ID
+
+    return id;
 }

@@ -4,11 +4,11 @@
 #include <tuple>
 #include <array>
 
-namespace OrderInfo{
+namespace orderInfo{
     class order{
         public:
             //Constructor
-            order(std::string name, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost);
+            order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost);
         
             //Get functions, set to const to insure that data isn't being changed
             int getCustomerID() const;
@@ -21,7 +21,6 @@ namespace OrderInfo{
 
             //Set functions 
             int setCustomerID(int id);
-            int generateOrderID(); 
             int setName(std::string name); 
             int setDropOffDate(std::string date); 
             int setPickUpDate(std::string date); 
@@ -30,6 +29,11 @@ namespace OrderInfo{
             
             //Helper functions
             double calculateCost(int* articles);
+            int generateOrderID(); 
+
+            //Serialize 
+            void serialize(std::ofstream& out) const;
+            void deserialize(std::ifstream& in);
             
         private: 
             int customerID;

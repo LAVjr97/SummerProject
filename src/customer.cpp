@@ -7,12 +7,13 @@ customer::customer(std::string name, std::string phone){
 	customer::name = name;
 	customer::phone = phone; 
 	customer::visits = 0;
-	customer::total = total;
+	customer::total = 0;
 
 }
 
 customer::customer(std::string name){
-
+	customer::name = name;
+	customer::customerID = customer::generateCustomerID();
 }
 
 //Get functions 
@@ -53,15 +54,30 @@ int customer::setPhone(std::string phone){
 	customer::phone = phone;
 	return 0;
 }
+
 int customer::updateLastVisit(std::string lastVisit){
 	customer::lastVisit = lastVisit;
 	return 0;
 }
+
 int customer::updateVisits(int visits){
 	customer::visits = visits;
 	return 0;
 }
+
 int customer::updateTotal(double total){
 	customer::total = total;
 	return 0;
 }
+
+//Helper functions
+int customer::generateCustomerID(){
+	int id = 0; 
+	
+	//pull up latest id used, "++"" it, update and save the latest ID
+
+
+	return id;
+} 
+
+

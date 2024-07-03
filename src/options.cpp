@@ -1,55 +1,71 @@
 #include "../include/menuHeader.h"
 #include "../include/order.h"
+#include "../include/customer.h"
 
- 
+//To clear the screen, windows uses "cls", mac/linux uses "clear" 
+#define screen "cls"
+
 using namespace menu;
 
 int options::handleDropOff() {
-    system("cls");
+    //Clear the Screen
+    system(screen);
     cout << "\nhandleDropOff";
 
-    std::string dropOff = options::getDate(), date, time, pickUp, name;
+    //Initialize variables
+    std::string dropOff = options::getDate(), date, time, pickUp, name, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
+    int customerID;
 
+    //Customer Info
+    cout << "\nIs this a first-time cusomter? <Yes/No>\n";
+    cin >> firstTime;
     cout << "\nCustomer Name:\n";
     cin >> name;
 
-    cout << "\nPick Up Date? <mm/dd/yy>\n";
+    if(firstTime == "Yes" || "yes" || "y" || "Y"){
+        cout << "\nCustomer Phone Number?\n";
+        cin >> number;
+        cust::customer* customerA = new cust::customer(name, number);
+   }else
+        /**have the stored customer info pulled up (name and customerID)**/
+
+    //Order Info
+    cout << "\nPick Up Day? <mm/dd/yy>\n";
     cin >> date;
 
-    cout << "\nTime? <hh:mm pm>\n";
+    cout << "\nPick Up Time? <hh:mm <am/pm>>\n";
     cin >> time;
     pickUp = date + " " + time;
+    articles = handleArticles();
+    orderInfo::order* orderA = new orderInfo::order(name, customerID, dropOff, pickUp, articles, cost);
 
-    
 
-    //OrderInfo::order customerOrder();
-    OrderInfo::order orderA(name, dropOff, pickUp, articles, cost);
-
+    //Have the customer 
     //save function before returning to main menu, there will be an auto save feature and a manual save before exiting to main menu. 
-    //delete[] dropOff; 
     return 0;
 }
 
 int options::handlePickUp() {
-    system("cls");
+    system(screen);
     cout << "\nhandlePickUp";
     return 0;
 }
 
 int options::handleLookUp() {
-    system("cls");
+    system(screen);
     cout << "\nhandleLookUp";
     return 0;
 }
 
 int options::handleHistory() {
-    system("cls");
+    system(screen);
     cout << "\nhandleDropOff";
     return 0;
 }
 
+//Creates a menu from where the user selects a piece of clothing and then inputs the number of pieces of that particular clothing 
 std::array<std::tuple<int, double>, 8> handleArticles() { 
     //[0]: Shirts, [1]: Pants, [2]:Sweaters, [3]:Coats, [4]:Blouses, [5]:2pc Suit, [6]:Jacket, [7]:Vest 
     std::array<std::tuple<int, double>, 8> articles; 
@@ -99,7 +115,7 @@ std::array<std::tuple<int, double>, 8> handleArticles() {
                 cout << "\nNumber of Vest(s)?\n";
                 cin >> n; 
                 articles[4] = std::make_tuple(n, 3.99);
-            
+
             case 0: 
                 return articles; 
             default: 
@@ -112,11 +128,12 @@ std::array<std::tuple<int, double>, 8> handleArticles() {
 //Returns the current date and time, Foramatted: mm/dd/yy hh:mm <am/pm>
 std::string options::getDate() {
     std::time_t currentTime = std::time(nullptr);
-    std::tm* localTime = std::localtime(&currentTime);
+    std::tm* localTime = std::localtime(&currentTime); 
     int year = localTime->tm_year - 100; //tm_year returns the year starting from 1900, so 2024 is 124 - 100 = 24
     int month = localTime->tm_mon + 1;
     int day = localTime->tm_mday;
-    int hour = localTime->tm_hour;
+    int hour = localTime->tm_hour; 
+
     int minute = localTime->tm_min;
     static std::string temp;
 
@@ -128,7 +145,6 @@ std::string options::getDate() {
     else 
         temp = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year) + " " + std::to_string(hour) + ":" + std::to_string(minute) + "am";
     
-
     //std::string* date = &temp;
     return temp;
 }

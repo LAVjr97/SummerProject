@@ -4,16 +4,17 @@
 namespace cust{
 	class customer{ 
 		public: 
-			//Constructors 
+			//Constructors & Destructor
 			customer(std::string name, std::string phone);
 			customer(std::string name);
+			~customer();
 
 			//Get functions 
 			int getCustomerID() const; 
 			std::string getName() const; 
 			std::string getPhone() const; 
 			std::string getLastVisit() const; 
-			int getVisit() const; 
+			int getVisit() const;        
 			double getTotal() const; 
 
 			//Set functions
@@ -23,6 +24,12 @@ namespace cust{
 			int updateLastVisit(std::string lastVisit);
 			int updateVisits(int visits);
 			int updateTotal(double total);
+
+			//Helper functions
+			int generateCustomerID(); 
+
+			//serialize functions
+			
 
 		private:
 			int customerID; 
