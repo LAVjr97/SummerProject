@@ -4,11 +4,11 @@ using namespace orderInfo;
 
 //Constructor
 order::order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost){
-    order::orderID = order::generateOrderID();
-    order::dropOffDate = dropOff;
-    order::pickUpDate = pickUp;
-    order::articles = description;
-    order::cost = cost; 
+    this->orderID = order::generateOrderID();
+    this->dropOffDate = dropOff;
+    this->pickUpDate = pickUp;
+    this->articles = description;
+    this->cost = cost; 
 }
 
 /*Get Functions*/
@@ -42,38 +42,38 @@ double order::getCost() const{
 
 /*Set Functions*/
 int order::setCustomerID(int id){
-    order::customerID = id;
+    this->customerID = id;
     return 0;
 }
 
 int order::generateOrderID(){
-    order::orderID = 10;
+    this->orderID = 10;
     return 0;
 }
 
 int order::setName(std::string name){
-    order::name = name;
+    this->name = name;
     return 0;
 }
 
 int order::setDropOffDate(std::string date){
     //date = new std::string[2];
-    order::dropOffDate = date;
+    this->dropOffDate = date;
     return 0;
 }
 
 int order::setPickUpDate(std::string date){
-    order::pickUpDate = date;
+    this->pickUpDate = date;
     return 0;
 }
 
 int order::setDetails(std::array<std::tuple<int, double>, 8> articles){
-    order::articles = articles;
+    this->articles = articles;
     return 0;
 }
 
 int order::setCost(double cost){
-    order::cost = cost;
+    this->cost = cost;
     return 0; 
 }
 
@@ -81,9 +81,18 @@ double order::calculateCost(int* articles) {
     return 0;
 }
 
-int generateOrderID(){ 
+int order::generateOrderID(){ 
     int id; 
     //pull up latest id used, "++"" it, update and save the latest ID
 
     return id;
+}
+
+//Serialize functions
+void order::serialize(std::ofstream& ofs) const{
+    ofs.write(reinterpret_cast<const char*>(&order::orderID), sizeof(order::orderID));
+
+}
+void deserialize(std::ifstream& in){
+
 }

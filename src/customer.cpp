@@ -4,16 +4,16 @@ using namespace cust;
 
 //Constructor
 customer::customer(std::string name, std::string phone){
-	customer::name = name;
-	customer::phone = phone; 
-	customer::visits = 0;
-	customer::total = 0;
+	this->name = name;
+	this->phone = phone; 
+	this->visits = 0;
+	this->total = 0;
 
 }
 
 customer::customer(std::string name){
-	customer::name = name;
-	customer::customerID = customer::generateCustomerID();
+	this->name = name;
+	this->customerID = customer::generateCustomerID();
 }
 
 //Get functions 
@@ -42,31 +42,31 @@ double customer::getTotal() const{
 
 //Set functions
 int customer::setCustomerID(int id) {
-	customer::customerID = id; 
+	this->customerID = id; 
 	return 0;
 }
 int customer::setName(std::string name) {
-	customer::name = name;
+	this->name = name;
 	return 0;
 }
 
 int customer::setPhone(std::string phone){
-	customer::phone = phone;
+	this->phone = phone;
 	return 0;
 }
 
 int customer::updateLastVisit(std::string lastVisit){
-	customer::lastVisit = lastVisit;
+	this->lastVisit = lastVisit;
 	return 0;
 }
 
 int customer::updateVisits(int visits){
-	customer::visits = visits;
+	this->visits = visits;
 	return 0;
 }
 
 int customer::updateTotal(double total){
-	customer::total = total;
+	this->total = total;
 	return 0;
 }
 
@@ -81,3 +81,11 @@ int customer::generateCustomerID(){
 } 
 
 
+//Serialize functions
+void customer::serialize(std::ofstream &ofs) const{
+
+}
+
+customer customer::deserialize(std::ifstream& ifs){
+
+}

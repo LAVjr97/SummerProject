@@ -3,6 +3,9 @@
 #include <string>
 #include <tuple>
 #include <array>
+#include <fstream>
+#include <cstring>
+
 
 namespace orderInfo{
     class order{

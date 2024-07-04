@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <vector>
 
 namespace cust{
 	class customer{ 
@@ -29,6 +30,8 @@ namespace cust{
 			int generateCustomerID(); 
 
 			//serialize functions
+			void serialize(std::ofstream &ofs) const;
+			static customer deserialize(std::ifstream& ifs);
 			
 
 		private:
