@@ -3,22 +3,30 @@
 using namespace orderInfo;
 
 //Constructor
-order::order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost){
-    this->orderID = order::generateOrderID();
-    this->dropOffDate = dropOff;
-    this->pickUpDate = pickUp;
-    this->articles = description;
+order::order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+    this->orderID = order::generateOrderID(); 
+    this->dropOffDate = dropOff; 
+    this->pickUpDate = pickUp; 
+    this->articles = articles; 
     this->cost = cost; 
-}
+} 
+
+order::order(int orderID, std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+    this->orderID = orderID; 
+    this->dropOffDate = dropOff; 
+    this->pickUpDate = pickUp; 
+    this->articles = articles; 
+    this->cost = cost; 
+} 
 
 /*Get Functions*/
-int order::getCustomerID() const{
-    return customerID;
-}
+int order::getCustomerID() const{ 
+    return customerID; 
+} 
 
-int order::getOrderID() const{
-    return orderID;
-}
+int order::getOrderID() const{ 
+    return orderID; 
+} 
 
 std::string order::getName() const{
     return name;
@@ -90,9 +98,61 @@ int order::generateOrderID(){
 
 //Serialize functions
 void order::serialize(std::ofstream& ofs) const{
-    ofs.write(reinterpret_cast<const char*>(&order::orderID), sizeof(order::orderID));
+    //size_t = unsigned integer type of the result of sizeof
+    size_t nameSize = name.size();
+
+    ofs.write(reinterpret_cast<const char*>(&this->orderID), sizeof(this->orderID)); 
+
+    ofs.write(reinterpret_cast<const char*>(&this->name), sizeof(nameSize));
+    ofs.write(name.c_str(), nameSize);
+
+    
+
+
+
+
 
 }
-void deserialize(std::ifstream& in){
+orderInfo::order order::deserialize(std::ifstream& ifs){
+    int orderId;
+    ifs.read(reinterpret_cast<char*>(&orderId), sizeof(orderId));
+
+    int customerId;
+    ifs.read(reinterpret_cast<char*>(&customerId), sizeof(customerId));
+
+    size_t customerNameSize;
+    ifs.read(reinterpret_cast<char*>(&customerNameSize), sizeof(customerNameSize));
+    std::string customerName(customerNameSize, ' ');
+    ifs.read(&customerName[0], customerNameSize);
+
+    size_t dropOffDateSize;
+    ifs.read(reinterpret_cast<char*>(&dropOffDateSize), sizeof(dropOffDateSize));
+    std::string dropOffDate(dropOffDateSize, ' ');
+    ifs.read(&dropOffDate[0], dropOffDateSize);
+
+    size_t pickUpDateSize;
+    ifs.read(reinterpret_cast<char*>(&pickUpDateSize), sizeof(pickUpDateSize));
+    std::string pickUpDate(pickUpDateSize, ' ');
+    ifs.read(&pickUpDate[0], pickUpDateSize);
+
+    //adress to tup, tup iterates over articles, so any change done to tup is a change to articles because of the "& "
+    
+    std::array<std::tuple<int, double>, 8> articles; 
+    for(auto& tup: articles){
+        int i; 
+        double d;
+
+        ifs.read(reinterpret_cast<char*>(&i), sizeof(i));
+        ifs.read(reinterpret_cast<char*>(&d), sizeof(d));
+        
+        tup = std::make_tuple(i, d);
+    }
+
+    double cost;
+    ifs.read(reinterpret_cast<char*>(&cost), sizeof(cost));
+
+    //std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost
+   
+    return orderInfo::order(orderId, customerName, customerId, dropOffDate, pickUpDate, articles, cost);
 
 }

@@ -11,8 +11,9 @@ namespace orderInfo{
     class order{
         public:
             //Constructor
-            order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost);
-        
+            order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
+            order(int orderID, std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
+
             //Get functions, set to const to insure that data isn't being changed
             int getCustomerID() const;
             int getOrderID() const;
@@ -35,8 +36,8 @@ namespace orderInfo{
             int generateOrderID(); 
 
             //Serialize 
-            void serialize(std::ofstream& out) const;
-            void deserialize(std::ifstream& in);
+            void serialize(std::ofstream& ofs) const;
+            static order deserialize(std::ifstream& ifs) ;
             
         private: 
             int customerID;

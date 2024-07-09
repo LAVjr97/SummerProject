@@ -138,7 +138,7 @@ std::string options::getDate() {
     static std::string temp;
 
     //Sets the time to am or pm depending on the time of day. 
-    if (hour > 12) {
+    if (hour > 12) { 
         hour = hour % 12;
         temp = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year) + " " + std::to_string(hour) + ":" + std::to_string(minute) + "pm";
     }

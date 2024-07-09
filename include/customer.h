@@ -1,11 +1,15 @@
 #include <iostream>
 #include <cassert>
+#include <string>
 #include <vector>
+#include <fstream>
+#include <cstring>
 
 namespace cust{
 	class customer{ 
 		public: 
 			//Constructors & Destructor
+			customer(int customerID, std::string name, std::string phone, int visits, double total);
 			customer(std::string name, std::string phone);
 			customer(std::string name);
 			~customer();

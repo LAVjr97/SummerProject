@@ -5,6 +5,8 @@
 #include <cassert>
 #include <cstdlib>
 #include "order.h"
+#include "customer.h"
+#include "file.h"
 #include <ctime> 
 
 
