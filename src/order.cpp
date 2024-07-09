@@ -3,16 +3,20 @@
 using namespace orderInfo;
 
 //Constructor
-order::order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+order::order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
     this->orderID = order::generateOrderID(); 
+    this->firstName = firstName;
+    this->lastName = lastName;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
     this->cost = cost; 
 } 
 
-order::order(int orderID, std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
     this->orderID = orderID; 
+    this->firstName = firstName;
+    this->lastName = lastName;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
@@ -29,7 +33,15 @@ int order::getOrderID() const{
 } 
 
 std::string order::getName() const{
-    return name;
+    return firstName + " " + lastName;
+}
+
+std::string order::getFirstName() const{
+    return firstName;
+}
+
+std::string order::getLastName() const{
+    return lastName;
 }
 
 std::string order::getDropOffDate() const{
@@ -59,13 +71,22 @@ int order::generateOrderID(){
     return 0;
 }
 
-int order::setName(std::string name){
-    this->name = name;
+// int order::setName(std::string name){
+//     this->name = name;
+//     return 0;
+// }
+
+int order::setFirstName(std::string firstName){
+    this->firstName = firstName;
+    return 0;
+}
+
+int order::setLastName(std::string lastName){
+    this->lastName = lastName;
     return 0;
 }
 
 int order::setDropOffDate(std::string date){
-    //date = new std::string[2];
     this->dropOffDate = date;
     return 0;
 }

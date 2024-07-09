@@ -9,14 +9,16 @@ namespace cust{
 	class customer{ 
 		public: 
 			//Constructors & Destructor
-			customer(int customerID, std::string name, std::string phone, int visits, double total);
-			customer(std::string name, std::string phone);
-			customer(std::string name);
+			customer(int customerID, std::string firstName, std::string lastName, std::string phone, int visits, double total);
+			customer(std::string firstName, std::string lastName, std::string phone);
+			customer(std::string firstName, std::string lastName);
 			~customer();
 
 			//Get functions 
 			int getCustomerID() const; 
-			std::string getName() const; 
+			std::string getName() const; //full name 
+			std::string getFirstName() const;
+			std::string getLastName() const;
 			std::string getPhone() const; 
 			std::string getLastVisit() const; 
 			int getVisit() const;        
@@ -24,7 +26,9 @@ namespace cust{
 
 			//Set functions
 			int setCustomerID(int id);
-			int setName(std::string name);
+			//int setName(std::string name); //full name
+			int setFirstName(std::string firstName);
+			int setLastName(std::string lastName);
 			int setPhone(std::string phone);
 			int updateLastVisit(std::string lastVisit);
 			int updateVisits(int visits);
@@ -40,7 +44,8 @@ namespace cust{
 
 		private:
 			int customerID; 
-			std::string name; 
+			std::string firstName;
+			std::string lastName; 
 			std::string phone; 
 			std::string lastVisit; 
 			int visits; 

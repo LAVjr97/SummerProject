@@ -1,5 +1,5 @@
-all: menu.cpp menuHeader.h customer.h customer.cpp options.cpp 
-	g++ main.cpp menuHeader.h order.cpp order.h 
+all: main.cpp customer.cpp options.cpp 
+	g++ main.cpp  order.cpp  
 
 clean: 
 	rm -f *.out a

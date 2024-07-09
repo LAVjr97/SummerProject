@@ -11,13 +11,15 @@ namespace orderInfo{
     class order{
         public:
             //Constructor
-            order(std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
-            order(int orderID, std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
+            order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
+            order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
 
             //Get functions, set to const to insure that data isn't being changed
             int getCustomerID() const;
             int getOrderID() const;
             std::string order::getName() const;
+            std::string order::getFirstName() const;
+            std::string order::getLastName() const;
             std::string getDropOffDate() const;
             std::string getPickUpDate() const;
             std::array<std::tuple<int, double>, 8> getDetails() const;
@@ -25,7 +27,8 @@ namespace orderInfo{
 
             //Set functions 
             int setCustomerID(int id);
-            int setName(std::string name); 
+            int setFirstName(std::string firstName);
+            int setLastName(std::string lastName); 
             int setDropOffDate(std::string date); 
             int setPickUpDate(std::string date); 
             int setDetails(std::array<std::tuple<int, double>, 8> articles);
@@ -43,7 +46,9 @@ namespace orderInfo{
             int customerID;
             int orderID;
 
-            std::string name;
+            //std::string name;
+            std::string firstName;
+            std::string lastName;
 
             //Dates and time will be Chars to keep it simple 
             std::string dropOffDate;
