@@ -1,13 +1,5 @@
 //Notes: To clear screen on Unix based os', use "clear", windows, "cls"
-
-#include <string>
-#include <iostream>
-#include <cassert>
-#include <cstdlib>
-#include "order.h"
-#include "customer.h"
-#include "file.h"
-#include <ctime> 
+#include "main.h"
 
 
 using namespace std;

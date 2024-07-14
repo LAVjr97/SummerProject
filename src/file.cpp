@@ -5,9 +5,9 @@ using namespace fi;
 void file::saveCustomers(const std::vector<cust::customer>& customers, const std::string& filename){
     std::ofstream ofs(filename, std::ios::binary);
     if(!ofs){
-        //cerr -> means a character error. 
-        std::cerr << "Unable to open file for writing: " << filename << std::endl; 
-        return; 
+        //cerr -> means a character error.
+        std::cerr << "Unable to open file for writing: " << filename << std::endl;
+        return;
     }
 
     size_t customerCount = customers.size();
@@ -26,9 +26,9 @@ std::vector<cust::customer> file::loadCustomers(const std::string& filename){
 
 
     if(!ifs){
-        //cerr -> means a character error. 
-        std::cerr << "Unable to open file for reading: " << filename << std::endl; 
-        return customers; 
+        //cerr -> means a character error.
+        std::cerr << "Unable to open file for reading: " << filename << std::endl;
+        return customers;
     }
 
     ifs.read(reinterpret_cast<char*>(&customerCount), sizeof(customerCount));
@@ -40,13 +40,13 @@ std::vector<cust::customer> file::loadCustomers(const std::string& filename){
 }
 
 void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order>>& orders, const std::string& filename){
-    size_t orderCount = orders.size(), numOrders;    
+    size_t orderCount = orders.size(), numOrders;
     std::ofstream ofs(filename, std::ios::binary);
 
     if(!ofs){
-        //cerr -> means a character error. 
-        std::cerr << "Unable to open file for writing: " << filename << std::endl; 
-        return; 
+        //cerr -> means a character error.
+        std::cerr << "Unable to open file for writing: " << filename << std::endl;
+        return;
     }
 
     ofs.write(reinterpret_cast<const char*>(&orderCount), sizeof(orderCount));
@@ -58,7 +58,8 @@ void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order
         ofs.write(reinterpret_cast<const char*>(&numOrders), sizeof(numOrders));
         
         for(const auto&order : customerOrders)
-            order.serialize(ofs);
+            order.serialize(ofs); 
+            
     }
 
     return;

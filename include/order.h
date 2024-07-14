@@ -1,11 +1,4 @@
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <tuple>
-#include <array>
-#include <fstream>
-#include <cstring>
-
+#include "main.h"
 
 namespace orderInfo{
     class order{
@@ -17,9 +10,9 @@ namespace orderInfo{
             //Get functions, set to const to insure that data isn't being changed
             int getCustomerID() const;
             int getOrderID() const;
-            std::string order::getName() const;
-            std::string order::getFirstName() const;
-            std::string order::getLastName() const;
+            std::string getName() const;
+            std::string getFirstName() const;
+            std::string getLastName() const;
             std::string getDropOffDate() const;
             std::string getPickUpDate() const;
             std::array<std::tuple<int, double>, 8> getDetails() const;

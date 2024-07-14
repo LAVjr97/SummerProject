@@ -21,7 +21,7 @@ int main(){
     orders[2].emplace_back(2, 2, "Bob Johnson", "2023-06-26", "2023-07-02", std::make_tuple(5, 1), 60.00);
 
     // Save data to binary files
-    FileManager::saveCustomers(customers, "customers.bin");s
+    FileManager::saveCustomers(customers, "customers.bin");
     FileManager::saveOrders(orders, "orders.bin");
 
     // Load data from binary files
@@ -31,7 +31,7 @@ s
     // Display loaded customers
     std::cout << "Loaded Customers:" << std::endl;
     for (const auto& customer : customers){
-        std::cout << customer.getId() << ": " << customer.getName() << ", " << customer.getPhone() 
+        std::cout << customer.getId() << ": " << customer.getFirstName() << ", " << customer.getPhone() 
                   << ", Total Visits: " << customer.getTotalVisits() 
                   << ", Total Spent: $" << customer.getTotalSpent() << std::endl; 
     }

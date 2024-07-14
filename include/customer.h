@@ -1,9 +1,4 @@
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <cstring>
+#include "main.h"
 
 namespace cust{
 	class customer{ 

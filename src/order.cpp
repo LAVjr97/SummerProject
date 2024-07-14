@@ -119,19 +119,24 @@ int order::generateOrderID(){
 
 //Serialize functions
 void order::serialize(std::ofstream& ofs) const{
-    //size_t = unsigned integer type of the result of sizeof
-    size_t nameSize = name.size();
+    //size_t = unsigned integer type of the result of sizeof, ofs = filename
+    size_t nameSize = firstName.size();
 
     ofs.write(reinterpret_cast<const char*>(&this->orderID), sizeof(this->orderID)); 
 
-    ofs.write(reinterpret_cast<const char*>(&this->name), sizeof(nameSize));
-    ofs.write(name.c_str(), nameSize);
+    ofs.write(reinterpret_cast<const char*>(&this->firstName), sizeof(nameSize));
+    ofs.write(firstName.c_str(), nameSize);
 
-    
+    nameSize = lastName.size();
+    ofs.write(reinterpret_cast<const char*>(&this->lastName), sizeof(nameSize));
+
+/*
 
 
+    DO THE REST HERE 
 
 
+*/
 
 }
 orderInfo::order order::deserialize(std::ifstream& ifs){
@@ -143,8 +148,12 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
 
     size_t customerNameSize;
     ifs.read(reinterpret_cast<char*>(&customerNameSize), sizeof(customerNameSize));
-    std::string customerName(customerNameSize, ' ');
-    ifs.read(&customerName[0], customerNameSize);
+    std::string firstName(customerNameSize, ' ');
+    ifs.read(&firstName[0], customerNameSize);
+
+    ifs.read(reinterpret_cast<char*>(&customerNameSize), sizeof(customerNameSize));
+    std::string lastName(customerNameSize, ' ');
+    ifs.read(&lastName[0], customerNameSize);
 
     size_t dropOffDateSize;
     ifs.read(reinterpret_cast<char*>(&dropOffDateSize), sizeof(dropOffDateSize));
@@ -156,7 +165,7 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
     std::string pickUpDate(pickUpDateSize, ' ');
     ifs.read(&pickUpDate[0], pickUpDateSize);
 
-    //adress to tup, tup iterates over articles, so any change done to tup is a change to articles because of the "& "
+    //adress to tup, tup iterates over articles, so any change done to tup is a change to articles because of the "&" in "auto&"
     
     std::array<std::tuple<int, double>, 8> articles; 
     for(auto& tup: articles){
@@ -174,6 +183,6 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
 
     //std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost
    
-    return orderInfo::order(orderId, customerName, customerId, dropOffDate, pickUpDate, articles, cost);
+    return orderInfo::order(orderId, firstName, lastName, customerId, dropOffDate, pickUpDate, articles, cost);
 
 }
