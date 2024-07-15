@@ -1,6 +1,8 @@
 //Notes: To clear screen on Unix based os', use "clear", windows, "cls"
-#include "main.h"
+#ifndef MENU_HEADER_H
+#define MENU_HEADER_H
 
+#include "main.h"
 
 using namespace std;
 
@@ -23,5 +25,4 @@ namespace menu{
     
 }
 
-
-
+#endif // !MENU_HEADER_H

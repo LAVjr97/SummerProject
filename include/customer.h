@@ -1,3 +1,6 @@
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
+
 #include "main.h"
 
 namespace cust{
@@ -35,7 +38,6 @@ namespace cust{
 			//serialize functions
 			void serialize(std::ofstream &ofs) const;
 			static customer deserialize(std::ifstream& ifs);
-			
 
 		private:
 			int customerID; 
@@ -47,6 +49,4 @@ namespace cust{
 			double total;  
 	};
 }
-
-
-
+#endif

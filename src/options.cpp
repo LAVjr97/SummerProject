@@ -16,7 +16,7 @@ int options::handleDropOff() {
     std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
-    int customerID;
+    int customerID = 0;
 
     //Customer Info
     cout << "\nIs this a first-time cusomter? <Yes/No>\n";

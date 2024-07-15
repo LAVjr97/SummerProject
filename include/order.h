@@ -1,3 +1,6 @@
+#ifndef ORDER_H
+#define ORDER_H
+
 #include "main.h"
 
 namespace orderInfo{
@@ -53,3 +56,5 @@ namespace orderInfo{
             double cost;
     };
 }
+
+#endif

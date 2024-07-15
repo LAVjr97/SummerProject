@@ -66,11 +66,6 @@ int order::setCustomerID(int id){
     return 0;
 }
 
-int order::generateOrderID(){
-    this->orderID = 10;
-    return 0;
-}
-
 // int order::setName(std::string name){
 //     this->name = name;
 //     return 0;
@@ -111,7 +106,7 @@ double order::calculateCost(int* articles) {
 }
 
 int order::generateOrderID(){ 
-    int id; 
+    int id = 0; 
     //pull up latest id used, "++"" it, update and save the latest ID
 
     return id;
@@ -140,13 +135,13 @@ void order::serialize(std::ofstream& ofs) const{
 
 }
 orderInfo::order order::deserialize(std::ifstream& ifs){
-    int orderId;
+    int orderId = 0;
     ifs.read(reinterpret_cast<char*>(&orderId), sizeof(orderId));
 
-    int customerId;
+    int customerId = 0;
     ifs.read(reinterpret_cast<char*>(&customerId), sizeof(customerId));
 
-    size_t customerNameSize;
+    size_t customerNameSize = 0;
     ifs.read(reinterpret_cast<char*>(&customerNameSize), sizeof(customerNameSize));
     std::string firstName(customerNameSize, ' ');
     ifs.read(&firstName[0], customerNameSize);
@@ -155,12 +150,12 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
     std::string lastName(customerNameSize, ' ');
     ifs.read(&lastName[0], customerNameSize);
 
-    size_t dropOffDateSize;
+    size_t dropOffDateSize = 0;
     ifs.read(reinterpret_cast<char*>(&dropOffDateSize), sizeof(dropOffDateSize));
     std::string dropOffDate(dropOffDateSize, ' ');
     ifs.read(&dropOffDate[0], dropOffDateSize);
 
-    size_t pickUpDateSize;
+    size_t pickUpDateSize = 0;
     ifs.read(reinterpret_cast<char*>(&pickUpDateSize), sizeof(pickUpDateSize));
     std::string pickUpDate(pickUpDateSize, ' ');
     ifs.read(&pickUpDate[0], pickUpDateSize);
@@ -169,8 +164,8 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
     
     std::array<std::tuple<int, double>, 8> articles; 
     for(auto& tup: articles){
-        int i; 
-        double d;
+        int i = 0;
+        double d = 0;
 
         ifs.read(reinterpret_cast<char*>(&i), sizeof(i));
         ifs.read(reinterpret_cast<char*>(&d), sizeof(d));
@@ -178,7 +173,7 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
         tup = std::make_tuple(i, d);
     }
 
-    double cost;
+    double cost = 0;
     ifs.read(reinterpret_cast<char*>(&cost), sizeof(cost));
 
     //std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost

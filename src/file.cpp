@@ -1,4 +1,4 @@
-#include "file.h"
+#include "../include/file.h"
 
 using namespace fi;
 
@@ -20,7 +20,7 @@ void file::saveCustomers(const std::vector<cust::customer>& customers, const std
 }
 
 std::vector<cust::customer> file::loadCustomers(const std::string& filename){
-    size_t i, customerCount;
+    size_t i, customerCount = 0;
     std::vector<cust::customer> customers;
     std::ifstream ifs(filename, std::ios::binary);
 
@@ -40,10 +40,10 @@ std::vector<cust::customer> file::loadCustomers(const std::string& filename){
 }
 
 void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order>>& orders, const std::string& filename){
-    size_t orderCount = orders.size(), numOrders;
+    size_t orderCount = orders.size(), numOrders = 0;
     std::ofstream ofs(filename, std::ios::binary);
-    int customerID;
-    orderInfo::order customerOrders;
+    int customerID = 0;
+    /*orderInfo::order customerOrders;
 
     if(!ofs){
         //cerr -> means a character error.
@@ -56,20 +56,20 @@ void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order
     for(const auto& [customerID, customerOrders] : orders){
         ofs.write(reinterpret_cast<const char*>(&customerID), sizeof(customerID));
     
-        numOrders = customerOrders.size();
+        numOrders = sizeof(customerOrders);
         ofs.write(reinterpret_cast<const char*>(&numOrders), sizeof(numOrders));
         
         for(const auto&order : customerOrders)
             order.serialize(ofs); 
             
     }
-
+    */
     return;
 }
 
 std::unordered_map<int, std::vector<orderInfo::order>> file::loadOrders(const std::string& filename){
-    int customerID; 
-    size_t i, j, orderCount, numOrders;
+    int customerID = 0; 
+    size_t i, j, orderCount = 0, numOrders = 0;
     std::vector<orderInfo::order> customerOrders;
     std::unordered_map<int, std::vector<orderInfo::order>> orders;
     std::ifstream ifs(filename, std::ios::binary);

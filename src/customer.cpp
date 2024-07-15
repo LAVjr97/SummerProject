@@ -139,9 +139,9 @@ void customer::serialize(std::ofstream &ofs) const{
 }
 
 customer customer::deserialize(std::ifstream& ifs){
-	int customerID, visits;
-	double total;
-	size_t nameSize, phoneSize;
+	int customerID = 0, visits = 0;
+	double total = 0;
+	size_t nameSize = 0, phoneSize = 0;
 
 	ifs.read(reinterpret_cast<char*>(&customerID), sizeof(customerID)); 
 

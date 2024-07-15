@@ -2,6 +2,9 @@
     Used to save customer information to an unordered map and 
  */
 
+#ifndef FILE_H
+#define FILE_H
+
 #include "main.h"
 
 #include "customer.h"
@@ -31,3 +34,4 @@ namespace fi{
 
 }
 
+#endif
