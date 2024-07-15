@@ -42,6 +42,8 @@ std::vector<cust::customer> file::loadCustomers(const std::string& filename){
 void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order>>& orders, const std::string& filename){
     size_t orderCount = orders.size(), numOrders;
     std::ofstream ofs(filename, std::ios::binary);
+    int customerID;
+    orderInfo::order customerOrders;
 
     if(!ofs){
         //cerr -> means a character error.
