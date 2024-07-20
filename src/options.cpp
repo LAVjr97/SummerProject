@@ -16,20 +16,18 @@ int options::handleDropOff() {
     std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
-    int customerID = 0;
+    int customerID;
 
     //Customer Info
     cout << "\nIs this a first-time cusomter? <Yes/No>\n";
     cin >> firstTime;
-    cout << "\nCustomer First Name:\n";
+    cout << "\nCustomer Name:\n";
     cin >> firstName;
-    cout << "\nCustomer Last Name:\n";
-    cin >> lastName;
 
     if(firstTime == "Yes" || "yes" || "y" || "Y"){
         cout << "\nCustomer Phone Number?\n";
         cin >> number;
-        cust::customer* customerA = new cust::customer(firstName, lastName, number);
+        cust::customer* customerA = new cust::customer(firstName, lastName, number);s
    }else
         /**have the stored customer info pulled up (name and customerID)**/
 
@@ -41,7 +39,7 @@ int options::handleDropOff() {
     cin >> time;
     pickUp = date + " " + time;
     articles = handleArticles();
-    orderInfo::order* orderA = new orderInfo::order(firstName, lastName, customerID, dropOff, pickUp, articles, cost);
+    orderInfo::order* orderA = new orderInfo::order(firstName, lastName,customerID, dropOff, pickUp, articles, cost);
 
 
     //Have the customer 
