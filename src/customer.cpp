@@ -13,6 +13,7 @@ customer::customer(int customerID, std::string firstName, std::string lastName, 
 	this->phone = phone;
 	this->visits = visits;
 	this->total = total;
+	return;
 }
 
 
@@ -22,7 +23,7 @@ customer::customer(std::string firstName, std::string lastName, std::string phon
 	this->phone = phone; 
 	this->visits = 0;
 	this->total = 0;
-
+	return;
 }
 
 customer::customer(std::string firstName, std::string lastName){

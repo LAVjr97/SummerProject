@@ -25,7 +25,8 @@ order::order(int orderID, std::string firstName, std::string lastName, int custo
 
 /*Get Functions*/
 int order::getCustomerID() const{ 
-    return customerID; 
+    std::cout << "\n" << this->customerID;
+    return this->customerID; 
 } 
 
 int order::getOrderID() const{ 

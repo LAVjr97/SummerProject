@@ -13,35 +13,42 @@ int options::handleDropOff() {
     cout << "\nhandleDropOff";
 
     //Initialize variables
+    cust::customer* customerA;
     std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
-    int customerID;
+    int customerID = 1;
+
 
     //Customer Info
     cout << "\nIs this a first-time cusomter? <Yes/No>\n";
     cin >> firstTime;
-    cout << "\nCustomer Name:\n";
+    cout << "\nCustomer First Name:\n";
     cin >> firstName;
+    cout << "\nCusotmer Last Name:\n";
+    cin >> lastName;
 
-    if(firstTime == "Yes" || "yes" || "y" || "Y"){
+    if(firstTime == "Yes" || firstTime == "yes" || firstTime == "y" || firstTime == "Y"){
         cout << "\nCustomer Phone Number?\n";
         cin >> number;
-        cust::customer* customerA = new cust::customer(firstName, lastName, number);s
-   }else
+        customerA = new cust::customer(firstName, lastName, number);
+    }
         /**have the stored customer info pulled up (name and customerID)**/
 
     //Order Info
     cout << "\nPick Up Day? <mm/dd/yy>\n";
+
     cin >> date;
 
     cout << "\nPick Up Time? <hh:mm <am/pm>>\n";
     cin >> time;
     pickUp = date + " " + time;
     articles = handleArticles();
-    orderInfo::order* orderA = new orderInfo::order(firstName, lastName,customerID, dropOff, pickUp, articles, cost);
+    cout << customerID;
+    orderInfo::order* orderA = new orderInfo::order(firstName, lastName, customerID, dropOff, pickUp, articles, cost);
 
-
+    int ID = orderA->getCustomerID();
+    cout << "\n" << ID;
     //Have the customer 
     //save function before returning to main menu, there will be an auto save feature and a manual save before exiting to main menu. 
     return 0;
@@ -66,7 +73,7 @@ int options::handleHistory() {
 }
 
 //Creates a menu from where the user selects a piece of clothing and then inputs the number of pieces of that particular clothing 
-std::array<std::tuple<int, double>, 8> handleArticles() { 
+std::array<std::tuple<int, double>, 8> options::handleArticles() { 
     //[0]: Shirts, [1]: Pants, [2]:Sweaters, [3]:Coats, [4]:Blouses, [5]:2pc Suit, [6]:Jacket, [7]:Vest 
     std::array<std::tuple<int, double>, 8> articles; 
     int article, n;
@@ -80,41 +87,49 @@ std::array<std::tuple<int, double>, 8> handleArticles() {
                 cout << "\nNumber of Shirt(s)?\n";
                 cin >> n; 
                 articles[0] = std::make_tuple(n, 4.99);
+                break;
 
             case 2: 
                 cout << "\nNumber of Pant(s)?\n";
                 cin >> n; 
                 articles[1] = std::make_tuple(n, 4.99);
+                break;
 
             case 3: 
                 cout << "\nNumber of Sweater(s)?\n";
                 cin >> n; 
                 articles[2] = std::make_tuple(n, 5.99);
+                break;
 
             case 4: 
                 cout << "\nNumber of Coat(s)?\n";
                 cin >> n; 
                 articles[3] = std::make_tuple(n, 6.99);
+                break;
 
             case 5: 
                 cout << "\nNumber of Blouse(s)?\n";
                 cin >> n; 
                 articles[3] = std::make_tuple(n, 4.50);
+                break;
 
             case 6: 
                 cout << "\nNumber of 2pc Suit(s)?\n";
                 cin >> n; 
                 articles[4] = std::make_tuple(n, 12.99);
+                break;
 
             case 7: 
                 cout << "\nNumber of Jacket(s)?\n";
                 cin >> n; 
                 articles[4] = std::make_tuple(n, 6.99);
+                break;
 
             case 8: 
                 cout << "\nNumber of Vest(s)?\n";
                 cin >> n; 
                 articles[4] = std::make_tuple(n, 3.99);
+                break;
 
             case 0: 
                 return articles; 

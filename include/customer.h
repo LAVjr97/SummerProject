@@ -10,7 +10,7 @@ namespace cust{
 			customer(int customerID, std::string firstName, std::string lastName, std::string phone, int visits, double total);
 			customer(std::string firstName, std::string lastName, std::string phone);
 			customer(std::string firstName, std::string lastName);
-			~customer();
+
 
 			//Get functions 
 			int getCustomerID() const; 
