@@ -7,7 +7,7 @@
 
 using namespace menu;
 
-int options::handleDropOff() {
+int options::handleDropOff(std::unordered_map<int, std::vector<orderInfo::order>> &orders, std::vector<cust::customer> customers) {
     //Clear the Screen
     system(screen);
     cout << "\nhandleDropOff";
@@ -40,15 +40,18 @@ int options::handleDropOff() {
 
     cin >> date;
 
-    cout << "\nPick Up Time? <hh:mm <am/pm>>\n";
+    cout << "\nPick Up Time? <hh:mm<am/pm>>\n";
     cin >> time;
     pickUp = date + " " + time;
-    articles = handleArticles();
+
+    articles = handleArticles(); 
+
     cout << customerID;
     orderInfo::order* orderA = new orderInfo::order(firstName, lastName, customerID, dropOff, pickUp, articles, cost);
 
-    int ID = orderA->getCustomerID();
-    cout << "\n" << ID;
+    cout << "\n" << orderA->getCustomerID();
+
+    orders.emplace(orders.end(), orderA);
     //Have the customer 
     //save function before returning to main menu, there will be an auto save feature and a manual save before exiting to main menu. 
     return 0;
@@ -79,6 +82,7 @@ std::array<std::tuple<int, double>, 8> options::handleArticles() {
     int article, n;
 
     while(true){
+        system(screen);
         cout << "\nEnter article number (or '0' to go save and return):\n1) Shirts\n2) Pants\n3) Sweaters\n4) Coats\n5) Blouses\n6) 2pc Suit\n7) Jackets\n7) Vest\n";
         cin >> article;
 

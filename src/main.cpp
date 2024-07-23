@@ -17,7 +17,7 @@ int main(){
     // Example: Add a new customer
     customers.emplace_back(1, "Alice Smith", "555-1234", 5, 250.00);
     customers.emplace_back(2, "Bob Johnson", "555-5678", 10, 600.00);
-
+    
     // Example: Add new orders
     orders[1].emplace_back(1, 1, "Alice Smith", "2023-06-25", "2023-07-01", std::make_tuple(3, 2), 50.00);
     orders[2].emplace_back(2, 2, "Bob Johnson", "2023-06-26", "2023-07-02", std::make_tuple(5, 1), 60.00);

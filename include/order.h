@@ -42,12 +42,13 @@ namespace orderInfo{
             int customerID;
             int orderID;
 
-            //std::string name;
             std::string firstName;
             std::string lastName;
 
             //Dates and time will be Chars to keep it simple 
+            //mm/dd/yy
             std::string dropOffDate;
+            //hh:mm<pm/am>
             std::string pickUpDate;
             
             //[0]: Shirts, [1]: Pants, [2]:Sweaters, [3]:Coats, [4]:Blouses, [5]:2pc Suit, [6]:Jacket, [7]:Vest 
