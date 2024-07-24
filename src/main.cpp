@@ -1,4 +1,4 @@
-#include "../include/menuHeader.h"
+#include "../include/handle.h"
 #include "../include/order.h"
 #include "../include/customer.h"
 
@@ -6,12 +6,12 @@
 using namespace std;
 
 int printMenu(void);
-int input(int);
+int input(int option, vector<cust::customer> &customers, unordered_map<int, orderInfo::order> &orders);
 
 int main(){
 
-    std::vector<cust::customer> customers;
-    std::unordered_map<int, std::vector<orderInfo::order>> orders;
+    vector<cust::customer> customers;
+    unordered_map<int, orderInfo::order> orders;
 
     /*
     // Example: Add a new customer
@@ -68,7 +68,7 @@ s
             cout << "Invalid choice. Please enter a number between 1 and 5.\n"; 
             continue; 
         } 
-        if(1 == input(option)) 
+        if(1 == input(option, customers, orders)) 
             break;
     }
 }
@@ -79,10 +79,10 @@ int printMenu(){
     return 0; 
 }
 
-int input(int option){
+int input(int option, vector<cust::customer> &customers, unordered_map<int, orderInfo::order> &orders){
     switch (option){
     case 1: 
-        menu::options::handleDropOff();
+        menu::options::handleDropOff(orders, customers);
         break;
     case 2: 
         menu::options::handlePickUp();

@@ -1,19 +1,19 @@
-#include "../include/menuHeader.h"
+#include "../include/handle.h"
 #include "../include/order.h"
 #include "../include/customer.h"
-
+ 
 //To clear the screen, windows uses "cls", mac/linux uses "clear" 
 #define screen "cls"
 
 using namespace menu;
 
-int options::handleDropOff(std::unordered_map<int, std::vector<orderInfo::order>> &orders, std::vector<cust::customer> customers) {
+int options::handleDropOff(std::unordered_map<int, orderInfo::order> &orders, std::vector<cust::customer> &customers) {
     //Clear the Screen
     system(screen);
     cout << "\nhandleDropOff";
 
     //Initialize variables
-    cust::customer* customerA;
+    //cust::customer* customerA;
     std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
@@ -28,12 +28,27 @@ int options::handleDropOff(std::unordered_map<int, std::vector<orderInfo::order>
     cout << "\nCusotmer Last Name:\n";
     cin >> lastName;
 
+
+    //Handle First time customer
     if(firstTime == "Yes" || firstTime == "yes" || firstTime == "y" || firstTime == "Y"){
         cout << "\nCustomer Phone Number?\n";
         cin >> number;
-        customerA = new cust::customer(firstName, lastName, number);
+        
+        //calculate customerID
+        //auto endIt = customers.end(); //last index
+        //customerID = std::distance(customers.begin(), endIt); //calculates the distance between the first and last index and subtracts 1 to return the last index, i.e. newest customer ID
+        customerID = customers.size();
+        cout << customerID;
+           
+        customers.emplace_back(customerID, firstName, lastName, number);
+        cout << "\n" << customers[customerID].getCustomerID();
     }
-        /**have the stored customer info pulled up (name and customerID)**/
+    //Already a pre-existing customer
+    else {
+        //search algo in customer container to retrieve the customer ID.
+
+    }
+    /**have the stored customer info pulled up (name and customerID)**/
 
     //Order Info
     cout << "\nPick Up Day? <mm/dd/yy>\n";
@@ -42,16 +57,25 @@ int options::handleDropOff(std::unordered_map<int, std::vector<orderInfo::order>
 
     cout << "\nPick Up Time? <hh:mm<am/pm>>\n";
     cin >> time;
+
     pickUp = date + " " + time;
 
     articles = handleArticles(); 
 
-    cout << customerID;
-    orderInfo::order* orderA = new orderInfo::order(firstName, lastName, customerID, dropOff, pickUp, articles, cost);
 
-    cout << "\n" << orderA->getCustomerID();
+    int orderID = orders.size();
+    cout << orderID;
+    orderInfo::order* orderA = new orderInfo::order(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
+    orders.emplace(orderID, orderA);
 
-    orders.emplace(orders.end(), orderA);
+    cout << "\n" << orders[orderID].getOrderID();
+    
+    //cout << "\n" << orderA->getCustomerID();
+
+    //orders.emplace(firstName, lastName, customerID, dropOff, pickUp, articles);
+
+
+
     //Have the customer 
     //save function before returning to main menu, there will be an auto save feature and a manual save before exiting to main menu. 
     return 0;

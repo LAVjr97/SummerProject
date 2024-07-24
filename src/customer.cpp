@@ -6,7 +6,7 @@
 
 using namespace cust;
 
-//Constructor
+//Constructors
 customer::customer(int customerID, std::string firstName, std::string lastName, std::string phone, int visits, double total){
 	this->firstName = firstName;
 	this->lastName = lastName;
@@ -16,12 +16,13 @@ customer::customer(int customerID, std::string firstName, std::string lastName, 
 	return;
 }
 
-
-customer::customer(std::string firstName, std::string lastName, std::string phone){
+//first time customer
+customer::customer(int customerID, std::string firstName, std::string lastName, std::string phone){
+	this->customerID = customerID; 
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->phone = phone; 
-	this->visits = 0;
+	this->visits = 1;
 	this->total = 0;
 	return;
 }
@@ -29,7 +30,6 @@ customer::customer(std::string firstName, std::string lastName, std::string phon
 customer::customer(std::string firstName, std::string lastName){
 	this->firstName = firstName;
 	this->lastName = lastName;
-	this->customerID = customer::generateCustomerID();
 }
 
 //Get functions 
@@ -103,16 +103,6 @@ int customer::updateTotal(double total){
 	this->total = total;
 	return 0;
 }
-
-//Helper functions
-int customer::generateCustomerID(){
-	int id = 0; 
-	
-	//pull up latest id used, "++"" it, update and save the latest ID
-
-
-	return id;
-} 
 
 
 //Serialize functions

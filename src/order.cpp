@@ -3,24 +3,26 @@
 using namespace orderInfo;
 
 //Constructor
-order::order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+order::order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
     this->orderID = order::generateOrderID(); 
     this->firstName = firstName;
     this->lastName = lastName;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
-    this->cost = cost; 
+    this->cost = 0;
+    // generate cost;
+ 
 } 
 
-order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost){
+order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
     this->orderID = orderID; 
     this->firstName = firstName;
     this->lastName = lastName;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
-    this->cost = cost; 
+    this->cost = 0; 
 } 
 
 /*Get Functions*/
@@ -179,6 +181,6 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
 
     //std::string name, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> description, double cost
    
-    return orderInfo::order(orderId, firstName, lastName, customerId, dropOffDate, pickUpDate, articles, cost);
+    return orderInfo::order(orderId, firstName, lastName, customerId, dropOffDate, pickUpDate, articles);
 
 }

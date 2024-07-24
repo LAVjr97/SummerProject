@@ -8,7 +8,7 @@ namespace cust{
 		public: 
 			//Constructors & Destructor
 			customer(int customerID, std::string firstName, std::string lastName, std::string phone, int visits, double total);
-			customer(std::string firstName, std::string lastName, std::string phone);
+			customer(int customerID, std::string firstName, std::string lastName, std::string phone);
 			customer(std::string firstName, std::string lastName);
 
 
@@ -33,7 +33,6 @@ namespace cust{
 			int updateTotal(double total);
 
 			//Helper functions
-			int generateCustomerID(); 
 
 			//serialize functions
 			void serialize(std::ofstream &ofs) const;

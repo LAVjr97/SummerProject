@@ -1,8 +1,10 @@
 //Notes: To clear screen on Unix based os', use "clear", windows, "cls"
-#ifndef MENU_HEADER_H
-#define MENU_HEADER_H
+#ifndef HANDLE_H
+#define HANDLE_H
 
 #include "main.h"
+#include "customer.h"
+#include "order.h"
 
 using namespace std;
 
@@ -10,7 +12,7 @@ namespace menu{
     class options{
         public: 
             //Static functions, functions to be used through out run time. 
-            static int handleDropOff(std::unordered_map<int, std::vector<orderInfo::order>> &orders, std::vector<cust::customer> customers);
+            static int handleDropOff(std::unordered_map<int, orderInfo::order> &orders, std::vector<cust::customer> &customers);
             static int handlePickUp();
             static int handleLookUp();
             static int handleHistory();
