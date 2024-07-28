@@ -13,5 +13,8 @@
 #include <ctime> 
 #include <tuple>
 #include <array>
+#include <algorithm>  // For std::all_of
+#include <regex>
+#include <cctype>
 
 #endif

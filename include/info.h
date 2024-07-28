@@ -3,6 +3,9 @@
 
 #include "main.h"
 
+namespace info{
+    class 
+}
 
 
 

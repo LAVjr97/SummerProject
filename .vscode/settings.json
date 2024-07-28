@@ -66,6 +66,7 @@
         "fstream": "cpp",
         "iomanip": "cpp",
         "stack": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "regex": "cpp"
     }
 }
