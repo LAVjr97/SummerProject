@@ -67,6 +67,25 @@
         "iomanip": "cpp",
         "stack": "cpp",
         "cassert": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "xstring": "cpp",
+        "charconv": "cpp",
+        "format": "cpp",
+        "iterator": "cpp",
+        "list": "cpp",
+        "utility": "cpp",
+        "xfacet": "cpp",
+        "xhash": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocinfo": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "xmemory": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp"
     }
 }

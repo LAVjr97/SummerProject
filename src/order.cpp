@@ -115,6 +115,12 @@ int order::generateOrderID(){
     return id;
 }
 
+// bool operator==(const order& lhs, const order& rhs){
+//     if (order.getName)
+// }
+
+
+
 //Serialize functions
 void order::serialize(std::ofstream& ofs) const{
     //size_t = unsigned integer type of the result of sizeof, ofs = filename

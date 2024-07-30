@@ -1,3 +1,4 @@
+#include "../include/main.h"
 #include "../include/handle.h"
 #include "../include/order.h"
 #include "../include/customer.h"
@@ -6,12 +7,12 @@
 using namespace std;
 
 int printMenu(void);
-int input(int option, vector<cust::customer> &customers, unordered_map<int, orderInfo::order> &orders);
+int input(int option, vector<cust::customer> &customers, vector<orderInfo::order> &orders);
 
 int main(){
 
     vector<cust::customer> customers;
-    unordered_map<int, orderInfo::order> orders;
+    vector<orderInfo::order> orders;
 
     /*
     // Example: Add a new customer
@@ -79,19 +80,19 @@ int printMenu(){
     return 0; 
 }
 
-int input(int option, vector<cust::customer> &customers, unordered_map<int, orderInfo::order> &orders){
+int input(int option, vector<cust::customer> &customers, vector<orderInfo::order> &orders){
     switch (option){
     case 1: 
         menu::options::handleDropOff(orders, customers);
         break;
     case 2: 
-        menu::options::handlePickUp();
+        menu::options::handlePickUp(orders, customers);
         break;
     case 3: 
-        menu::options::handleLookUp();
+        menu::options::handleLookUp(orders, customers);
         break;
     case 4:
-        menu::options::handleHistory();
+        menu::options::handleHistory(orders, customers);
         break;
     case 5:
         return 1;

@@ -1,7 +1,7 @@
 #ifndef ORDER_H
 #define ORDER_H
 
-#include "main.h"
+#include "../include/main.h"
 
 namespace orderInfo{
     class order{
@@ -33,6 +33,8 @@ namespace orderInfo{
             //Helper functions
             double calculateCost(int* articles);
             int generateOrderID(); 
+
+            //friend bool operator==(const int orderID, const order& rhs);
 
             //Serialize 
             void serialize(std::ofstream& ofs) const;

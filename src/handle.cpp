@@ -1,13 +1,13 @@
 #include "../include/handle.h"
-#include "../include/order.h"
-#include "../include/customer.h"
- 
+
+
+
 //To clear the screen, windows uses "cls", mac/linux uses "clear" 
 #define screen "cls"
 
 using namespace menu;
 
-int options::handleDropOff(std::unordered_map<int, orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
     //Clear the Screen
     system(screen);
     cout << "\nhandleDropOff";
@@ -63,10 +63,10 @@ int options::handleDropOff(std::unordered_map<int, orderInfo::order> &orders, st
     articles = handleArticles(); 
 
 
-    int orderID = orders.size();
+    int orderID = orders.size(); 
     cout << orderID;
-    orderInfo::order* orderA = new orderInfo::order(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
-    orders.emplace(orderID, orderA);
+    //orderInfo::order* orderA = new orderInfo::order(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
+    orders.emplace_back(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
 
     cout << "\n" << orders[orderID].getOrderID();
     
@@ -81,19 +81,34 @@ int options::handleDropOff(std::unordered_map<int, orderInfo::order> &orders, st
     return 0;
 }
 
-int options::handlePickUp() {
+int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+    std::string entry;
+    search::Search search;
+    std::vector<orderInfo::order> order;
+    int i;
     system(screen);
     cout << "\nhandlePickUp";
+    cout << "\n What is the name, last name or order ID that belongs to the order? \n";
+    cin >> entry;
+    
+    order = search.searchAlgo(entry, orders);
+
+    for(i = 0; i < order.size(); i++){
+        cout << "\n" << order[i].getCustomerID() << "\n";
+
+        cout <<"\n" << order[i].getName() << "\n";
+
+    }
     return 0;
 }
 
-int options::handleLookUp() {
+int options::handleLookUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
     system(screen);
     cout << "\nhandleLookUp";
     return 0;
 }
 
-int options::handleHistory() {
+int options::handleHistory(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
     system(screen);
     cout << "\nhandleDropOff";
     return 0;

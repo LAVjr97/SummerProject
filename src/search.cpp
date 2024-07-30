@@ -1,28 +1,78 @@
-#include "../include/search.h"
 #include "../include/order.h"
 #include "../include/customer.h"
+#include "../include/search.h"
 
 using namespace search;
 
-orderInfo::order& searchAlgo(const std::string& entry){
-    std::tuple<cust::customer, orderInfo::order> tup;
-    if(isNameWithSpace(entry)){
-        order = searchName(entry);
+std::vector<orderInfo::order> Search::searchAlgo(const std::string& entry, std::vector<orderInfo::order> &orders){
+    std::vector<orderInfo::order> order;
+    if(this->isNameWithSpace(entry)){
+        order = searchName(entry, orders);
+        return order;
     }
+
+    else if(this->isName(entry)){
+        order = searchLastName(entry, orders);
+        return order;
+    }
+
+    else if(this->isPhoneNumber(entry)){
+        order = searchPhone(entry, orders);
+        return order;
+    }
+
+    else if(this->isOrderID(entry)){
+        order = searchOrder(entry, orders);
+        return order;
+    }
+    return order;
+}   
+
+std::vector<orderInfo::order> Search::searchName(const std::string& entry, const std::vector<orderInfo::order> &orders){
+    std::vector<orderInfo::order> order;
+    int i, j = 0;
+
+    for(i = 0; i < orders.size(); i++){
+        if(orders[i].getName() == entry){
+            order[j] = orders[i];
+            j++;
+        }
+    } 
+    return order;
 }
+std::vector<orderInfo::order> Search::searchLastName(const std::string& entry, const std::vector<orderInfo::order> &orders){
+    std::vector<orderInfo::order> order;
+    int i, j = 0;
 
-orderInfo::order& searchName(const std::string& entry){
-
+    for(i = 0; i < orders.size(); i++){
+        if(orders[i].getLastName() == entry){
+            order[j] = orders[i];
+            j++;
+        }
+    }
+    return order;
 }
-orderInfo::order& searchPhone(const std::string& entry){
+//std::vector<orderInfo::order> Search::searchPhone(const std::string& entry, const std::vector<orderInfo::order> &orders){
+//    std::vector<orderInfo::order> orders;
 
-}
-orderInfo::order& searchOrder(const std::string& entry){
+//}
 
+std::vector<orderInfo::order> Search::searchOrder(const std::string& entry, const std::vector<orderInfo::order> &orders){
+    int id = stoi(entry), i, j = 0;
+    std::vector<orderInfo::order> order;
+
+    for(i = 0; i < orders.size(); i++){
+        if(orders[i].getOrderID() == id){
+            order[j] = orders[i];
+            j++;
+            break;
+        }
+    }
+    return order;
 }
 
 //Determining Functions
-bool isNameWithSpace(const std::string& entry){
+bool Search::isNameWithSpace(const std::string& entry){
     size_t spacePos = entry.find(' ');
     if (spacePos != std::string::npos && spacePos != 0 && spacePos != entry.length() - 1) { //basically the space makes sure that the space isnt at the start or end
         std::string firstName = entry.substr(0, spacePos);
@@ -32,15 +82,15 @@ bool isNameWithSpace(const std::string& entry){
     return false;
 }
 
-bool isName(const std::string& entry){
+bool Search::isName(const std::string& entry){
     return std::all_of(entry.begin(), entry.end(), ::isalpha);
 }
-bool isPhoneNumber(const std::string& entry){
+bool Search::isPhoneNumber(const std::string& entry){
     std::regex phoneRegex(R"((\(\d{3}\) |\d{3}-)?\d{3}-\d{4})");
     return std::regex_match(entry, phoneRegex);
 }
 
-bool isOrderID(const std::string& entry){
+bool Search::isOrderID(const std::string& entry){
     return std::all_of(entry.begin(), entry.end(), ::isdigit) && entry.length() <= 7;
 }
 

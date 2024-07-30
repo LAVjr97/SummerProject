@@ -1,7 +1,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "main.h"
+#include "../include/main.h"
 
 namespace cust{
 	class customer{ 
