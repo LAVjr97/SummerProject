@@ -21,7 +21,7 @@ namespace search{
             std::vector<orderInfo::order> searchAlgo(const std::string& entry, std::vector<orderInfo::order> &orders);
             std::vector<orderInfo::order> searchName(const std::string& entry, const std::vector<orderInfo::order> &orders);
             std::vector<orderInfo::order> searchLastName(const std::string& entry, const std::vector<orderInfo::order> &orders);
-            std::vector<orderInfo::order> searchPhone(const std::string& entry, const std::vector<orderInfo::order> &orders);
+            //std::vector<orderInfo::order> searchPhone(const std::string& entry, const std::vector<orderInfo::order> &orders);
             std::vector<orderInfo::order> searchOrder(const std::string& entry, const std::vector<orderInfo::order> &orders);
             
 

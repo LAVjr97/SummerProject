@@ -7,23 +7,19 @@ using namespace search;
 std::vector<orderInfo::order> Search::searchAlgo(const std::string& entry, std::vector<orderInfo::order> &orders){
     std::vector<orderInfo::order> order;
     if(this->isNameWithSpace(entry)){
-        order = searchName(entry, orders);
-        return order;
+        order = this->searchName(entry, orders);
     }
 
     else if(this->isName(entry)){
-        order = searchLastName(entry, orders);
-        return order;
+        order = this->searchLastName(entry, orders);
     }
 
-    else if(this->isPhoneNumber(entry)){
-        order = searchPhone(entry, orders);
-        return order;
-    }
+    /*else if (this->isPhoneNumber(entry)) {
+        order = this->searchPhone(entry, orders);
+    }*/
 
     else if(this->isOrderID(entry)){
-        order = searchOrder(entry, orders);
-        return order;
+        order = this->searchOrder(entry, orders);
     }
     return order;
 }   
