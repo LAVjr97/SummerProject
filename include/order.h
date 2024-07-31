@@ -8,6 +8,7 @@ namespace orderInfo{
         public:
             //Constructor
             order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles);
+            order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost);
             order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles);
 
             //Get functions, set to const to insure that data isn't being changed
@@ -34,9 +35,9 @@ namespace orderInfo{
             double calculateCost(int* articles);
             int generateOrderID(); 
 
-            //friend bool operator==(const int orderID, const order& rhs);
+            //order& operator=(const order& other);
 
-            //Serialize 
+            //Serialize  
             void serialize(std::ofstream& ofs) const;
             static order deserialize(std::ifstream& ifs) ;
             

@@ -7,6 +7,7 @@ order::order(std::string firstName, std::string lastName, int customerID, std::s
     this->orderID = order::generateOrderID(); 
     this->firstName = firstName;
     this->lastName = lastName;
+    this->customerID = customerID;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
@@ -15,10 +16,22 @@ order::order(std::string firstName, std::string lastName, int customerID, std::s
  
 } 
 
+order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost) {
+    this->orderID = orderID;
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->customerID = customerID;
+    this->dropOffDate = dropOff;
+    this->pickUpDate = pickUp;
+    this->articles = articles;
+    this->cost = cost;
+}
+
 order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
     this->orderID = orderID; 
     this->firstName = firstName;
     this->lastName = lastName;
+    this->customerID = customerID;
     this->dropOffDate = dropOff; 
     this->pickUpDate = pickUp; 
     this->articles = articles; 
@@ -27,7 +40,7 @@ order::order(int orderID, std::string firstName, std::string lastName, int custo
 
 /*Get Functions*/
 int order::getCustomerID() const{ 
-    std::cout << "\n" << this->customerID;
+    //std::cout << "\n" << this->customerID;
     return this->customerID; 
 } 
 
@@ -114,11 +127,20 @@ int order::generateOrderID(){
 
     return id;
 }
+/*
+order& order::operator=(const order& other){
+    this->customerID = other.getCustomerID();
+    this->orderID = other.getOrderID();
+    this->firstName = other.getFirstName();
+    this->lastName = other.getLastName();
+    this->dropOffDate = other.getFirstName();
+    this->pickUpDate = other.getPickUpDate();
+    this->articles = other.getDetails();
+    this->cost = other.getCost();
 
-// bool operator==(const order& lhs, const order& rhs){
-//     if (order.getName)
-// }
-
+    return *this;
+}
+*/
 
 
 //Serialize functions

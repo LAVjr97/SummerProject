@@ -92,11 +92,11 @@ int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cus
     cin >> entry;
     
     order = search.searchAlgo(entry, orders);
+    std::cout << "\nAfter SearchAlgo\n";
+    for(i = 0; i < order.size(); i++){ 
+        std::cout << "\n" << order[i].getCustomerID() << "\n";
 
-    for(i = 0; i < order.size(); i++){
-        cout << "\n" << order[i].getCustomerID() << "\n";
-
-        cout <<"\n" << order[i].getName() << "\n";
+        std::cout <<"\n" << order[i].getName() << "\n";
 
     }
     return 0;
