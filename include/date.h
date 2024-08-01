@@ -16,7 +16,7 @@ namespace date{
             std::string getAm_Pm() const;
             std::string getTime() const;
             
-
+            std::string getDate_Time() const;
 
             //set functions
             int setDay(int day);
@@ -29,6 +29,7 @@ namespace date{
             int setAm_Pm(std::string am_pm);
             int setTime(std::string time);
             
+            int setDate_Time(std::string date_time);
 
             //helper functions
             std::string createExistingDate()const;
