@@ -2,6 +2,7 @@
 #define ORDER_H
 
 #include "../include/main.h"
+#include "../include/date.h"
 
 namespace orderInfo{
     class order{
@@ -21,6 +22,9 @@ namespace orderInfo{
             std::string getPickUpDate() const;
             std::array<std::tuple<int, double>, 8> getDetails() const;
             double getCost() const;
+            int getRack() const;
+            bool getPickUp() const;
+
 
             //Set functions 
             int setCustomerID(int id);
@@ -30,6 +34,8 @@ namespace orderInfo{
             int setPickUpDate(std::string date); 
             int setDetails(std::array<std::tuple<int, double>, 8> articles);
             int setCost(double cost);
+            int setRack(int rack);
+            int setPickUp(bool pickUp);
             
             //Helper functions
             double calculateCost(int* articles);
@@ -39,7 +45,7 @@ namespace orderInfo{
 
             //Serialize  
             void serialize(std::ofstream& ofs) const;
-            static order deserialize(std::ifstream& ifs) ;
+            static order deserialize(std::ifstream& ifs);
             
         private: 
             int customerID;
@@ -50,6 +56,8 @@ namespace orderInfo{
 
             //Dates and time will be Chars to keep it simple 
             //mm/dd/yy
+
+
             std::string dropOffDate;
             //hh:mm<pm/am>
             std::string pickUpDate;
@@ -58,6 +66,10 @@ namespace orderInfo{
             std::array<std::tuple<int, double>, 8> articles;
             
             double cost;
+            int rackNumber;
+            bool pickedUp;
+
+
     };
 }
 

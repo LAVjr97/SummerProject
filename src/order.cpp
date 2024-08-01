@@ -12,6 +12,8 @@ order::order(std::string firstName, std::string lastName, int customerID, std::s
     this->pickUpDate = pickUp; 
     this->articles = articles; 
     this->cost = 0;
+    this->rackNumber = -1;
+    this->pickedUp = false;
     // generate cost;
  
 } 
@@ -25,6 +27,8 @@ order::order(int orderID, std::string firstName, std::string lastName, int custo
     this->pickUpDate = pickUp;
     this->articles = articles;
     this->cost = cost;
+    this->rackNumber = -1;
+    this->pickedUp = false;
 }
 
 order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
@@ -36,6 +40,8 @@ order::order(int orderID, std::string firstName, std::string lastName, int custo
     this->pickUpDate = pickUp; 
     this->articles = articles; 
     this->cost = 0; 
+    this->rackNumber = -1;
+    this->pickedUp = false;
 } 
 
 /*Get Functions*/
@@ -74,6 +80,14 @@ std::array<std::tuple<int, double>, 8> order::getDetails() const{
 
 double order::getCost() const{
     return cost;
+}
+
+int order::getRack() const{
+    return rackNumber;
+}
+
+bool order::getPickUp() const{
+    return pickedUp;
 }
 
 /*Set Functions*/
@@ -115,6 +129,16 @@ int order::setDetails(std::array<std::tuple<int, double>, 8> articles){
 int order::setCost(double cost){
     this->cost = cost;
     return 0; 
+}
+
+int order::setRack(int rack){
+    this->rackNumber = rack;
+    return 0;
+}
+
+int order::setPickUp(bool pickUp){
+    this->pickedUp = pickUp;
+    return 0;
 }
 
 double order::calculateCost(int* articles) {
