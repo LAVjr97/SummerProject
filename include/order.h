@@ -56,8 +56,7 @@ namespace orderInfo{
 
             //Dates and time will be Chars to keep it simple 
             //mm/dd/yy
-
-
+            //date::Date 
             std::string dropOffDate;
             //hh:mm<pm/am>
             std::string pickUpDate;

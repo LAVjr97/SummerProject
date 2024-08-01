@@ -89,3 +89,8 @@ int Date::setDate_Time(std::string date_time){
     this->date_time = date_time;
     return 0;
 }
+
+//Helper functions
+std::string Date::createDate_Time(){
+    t
+}
