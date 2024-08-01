@@ -3,6 +3,8 @@
 namespace date{
     class Date{
         public:
+            Date(std::string fullDate);
+
             //get functions 
             int getDay() const;
             int getMonth() const;
@@ -11,8 +13,9 @@ namespace date{
 
             int getHour() const;
             int getMin() const;
-            std::string getTime() const;
             std::string getAm_Pm() const;
+            std::string getTime() const;
+            
 
 
             //set functions
@@ -23,12 +26,13 @@ namespace date{
 
             int setHour(int hour);
             int setMin(int min);
-            int setTime(std::string time);
             int setAm_Pm(std::string am_pm);
+            int setTime(std::string time);
+            
 
             //helper functions
-
-
+            std::string createExistingDate()const;
+            std::string createExistingTime()const;
 
         private:
             int day;
@@ -40,6 +44,8 @@ namespace date{
             int min;
             std::string am_pm;
             std::string time;
+
+            std::string date_time;
             
     };
 }
