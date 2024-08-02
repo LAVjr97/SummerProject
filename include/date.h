@@ -39,7 +39,8 @@ namespace date{
 
             //Overload operators
             bool operator>(Date& other) const;
-
+            Date& operator=(Date& other);
+            
         private:
             int day;
             int month;

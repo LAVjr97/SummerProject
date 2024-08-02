@@ -2,8 +2,8 @@
 
 using namespace date;
 
-Date::Date(std::string fullDate){
-
+Date::Date(bool ){
+    
 }
 
 
@@ -152,4 +152,18 @@ bool Date::operator>(Date& other) const{
     else if(this->year > other.getYear()) 
         return true;
     return false;
+}
+
+Date& Date::operator=(Date& other){
+    this->day = other.getDay();
+    this->month = other.getMonth();
+    this->year = other.getYear();
+    this->date = other.getDate();
+    this->hour = other.getHour();
+    this->min = other.getMin();
+    this->time = other.getTime();
+    this->am_pm = other.getAm_Pm();
+    this->date_time = other.getDate_Time();
+    
+    return *this;
 }
