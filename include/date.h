@@ -32,8 +32,13 @@ namespace date{
             int setDate_Time(std::string date_time);
 
             //helper functions
-            std::string createExistingDate()const;
-            std::string createExistingTime()const;
+            int setTodaysDate();
+            int createDate();
+            int createTime();
+            int createDate_Time();
+
+            //Overload operators
+            bool operator>(Date& other) const;
 
         private:
             int day;

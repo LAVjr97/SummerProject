@@ -91,6 +91,65 @@ int Date::setDate_Time(std::string date_time){
 }
 
 //Helper functions
-std::string Date::createDate_Time(){
-    t
+int Date::setTodaysDate() {
+    std::time_t currentTime = std::time(nullptr);
+    std::tm* localTime = std::localtime(&currentTime);
+    this->year = localTime->tm_year - 100; //tm_year returns the year starting from 1900, so 2024 is 124 - 100 = 24
+    this->month = localTime->tm_mon + 1;
+    this->day = localTime->tm_mday;
+    this->hour = localTime->tm_hour;
+    this->min = localTime->tm_min;
+
+    //Sets the time to am or pm depending on the time of day. 
+    if (this->hour > 12) {
+        this->hour = this->hour % 12;
+        this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + "pm";
+    }
+    else
+        this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + "am";
+    
+    this->date = std::to_string(this->month) + "/" + std::to_string(this->day) + "/" + std::to_string(this->year);
+    this->date_time = this->date + " " + this->time;
+    return 0;
+}
+
+int Date::createDate() {
+    this->date = std::to_string(this->day) + "/" + std::to_string(this->month) + "/" + std::to_string(this->year);
+    return 0;
+}
+
+int Date::createTime() {
+    this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + this->am_pm;
+}
+
+int Date::createDate_Time(){
+    this->date_time = this->date + " " + this->time + this->am_pm;
+    return 0;
+}
+
+//Newer than
+bool Date::operator>(Date& other) const{
+    if (this->year == other.getYear()) {
+        if (this->month == other.getMonth()) {
+            if (this->day == other.getDay()) {
+                if (this->am_pm == other.getAm_Pm()) {
+                    if (this->hour == other.getHour()) {
+                        if (this->min > other.getMin())
+                            return true;
+                    }
+                    else if (this->hour > other.getHour())
+                        return true;
+                }
+                else if (this->am_pm == "am" && other.getAm_Pm() == "pm")
+                    return true;
+            }
+            else if(this->day > other.getDay()) 
+                return true;
+        }
+        else if(this->month > other.getMonth()) 
+            return true;
+    }
+    else if(this->year > other.getYear()) 
+        return true;
+    return false;
 }

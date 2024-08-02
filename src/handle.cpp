@@ -184,7 +184,7 @@ std::array<std::tuple<int, double>, 8> options::handleArticles() {
 }
 
 //Returns the current date and time, Foramatted: mm/dd/yy hh:mm <am/pm>
-std::string options::getDate() {
+/*std::string options::getDate() {
     std::time_t currentTime = std::time(nullptr);
     std::tm* localTime = std::localtime(&currentTime); 
     int year = localTime->tm_year - 100; //tm_year returns the year starting from 1900, so 2024 is 124 - 100 = 24
@@ -206,3 +206,4 @@ std::string options::getDate() {
     //std::string* date = &temp;
     return temp;
 }
+*/
