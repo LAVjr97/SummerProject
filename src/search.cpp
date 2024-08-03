@@ -91,6 +91,7 @@ bool Search::isNameWithSpace(const std::string& entry){
 }
 
 bool Search::isName(const std::string& entry){
+    std::cout << "\nIn isName function \n";
     return std::all_of(entry.begin(), entry.end(), ::isalpha);
 }
 
