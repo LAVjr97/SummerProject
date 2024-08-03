@@ -16,5 +16,6 @@
 #include <algorithm>  // For std::all_of
 #include <regex>
 #include <cctype>
+#include <regex>
 
 #endif

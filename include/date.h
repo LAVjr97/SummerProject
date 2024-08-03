@@ -40,7 +40,13 @@ namespace date{
             //Overload operators
             bool operator>(Date& other) const;
             Date& operator=(Date& other);
-            
+
+            //Random functions to speed up the process to increment days. 
+            bool isLeapYear();
+            int daysInMonth();
+            int dayOfWeek();
+            int addDays(int daysToAdd);
+
         private:
             int day;
             int month;

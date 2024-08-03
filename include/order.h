@@ -58,8 +58,10 @@ namespace orderInfo{
             //mm/dd/yy
             //date::Date 
             std::string dropOffDate;
+            date::Date dropOff;
             //hh:mm<pm/am>
             std::string pickUpDate;
+            date::Date pickUp;
             
             //[0]: Shirts, [1]: Pants, [2]:Sweaters, [3]:Coats, [4]:Blouses, [5]:2pc Suit, [6]:Jacket, [7]:Vest 
             std::array<std::tuple<int, double>, 8> articles;

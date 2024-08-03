@@ -137,7 +137,7 @@ int order::setRack(int rack){
 }
 
 int order::setPickUp(bool pickUp){
-    this->pickedUp = pickUp;
+    this->pickedUp = pickUp;s
     return 0;
 }
 

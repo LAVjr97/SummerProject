@@ -167,3 +167,45 @@ Date& Date::operator=(Date& other){
     
     return *this;
 }
+
+bool isLeapYear(){
+    return(this->year % 4);
+}
+
+int daysInMonth(){
+    if(this->month == 2)
+        return isLeapYear() ? 29 : 28;
+    else if(this->month == 4 || this->month == 6 || this->month == 9|| this->month == 11)
+        return 30;
+    else 
+        return 31;
+}
+//Returns the day of the week, where 0 = Sunday, 1 = Monday ... 6 = Saturday
+int dayOfWeek(){
+    int y = this->year, m = this->month, dayOfWeek;
+    if(m < 3){
+        m += 12;
+        y -= 1;
+    }
+    
+    dayOfWeek = (day + 2 * m + 3 * (m + 1) / 5 + y + y / 4) % 7;
+
+    return dayOfWeek;
+}
+
+int addDays(int daysToAdd){
+    int daysAdded = 0;
+    while(daysAdded < daysToAdd){
+        this->day++;
+        if(day > (daysInMonth())){
+            this->day = 1;
+            this->month++;
+            if(this->month > 12){
+                this->month = 1; 
+                this->year++;
+            }
+       }
+       if (daysOfWeek() != 0) //Remmeber, 0 = Sunday
+            daysAdded++;
+    }
+}
