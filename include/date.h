@@ -3,7 +3,8 @@
 namespace date{
     class Date{
         public:
-            Date(std::string fullDate);
+            Date();
+            Date(int n);
 
             //get functions 
             int getDay() const;
@@ -36,15 +37,16 @@ namespace date{
             int createDate();
             int createTime();
             int createDate_Time();
+            void updateClass();
 
             //Overload operators
             bool operator>(Date& other) const;
             Date& operator=(Date& other);
 
             //Random functions to speed up the process to increment days. 
-            bool isLeapYear();
-            int daysInMonth();
-            int dayOfWeek();
+            bool isLeapYear() const;
+            int daysInMonth() const;
+            int dayOfWeek() const;
             int addDays(int daysToAdd);
 
         private:

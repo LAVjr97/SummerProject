@@ -2,10 +2,14 @@
 
 using namespace date;
 
-Date::Date(bool ){
-    
+Date::Date(){
+    setTodaysDate();
 }
 
+Date::Date(int n) {
+    setTodaysDate();
+    addDays(n);
+}
 
 //Get functions
 int Date::getDay() const{
@@ -103,11 +107,12 @@ int Date::setTodaysDate() {
     //Sets the time to am or pm depending on the time of day. 
     if (this->hour > 12) {
         this->hour = this->hour % 12;
-        this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + "pm";
+        this->am_pm = "pm";
     }
     else
-        this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + "am";
-    
+        this->am_pm = "am";
+
+    this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + this->am_pm;
     this->date = std::to_string(this->month) + "/" + std::to_string(this->day) + "/" + std::to_string(this->year);
     this->date_time = this->date + " " + this->time;
     return 0;
@@ -125,6 +130,13 @@ int Date::createTime() {
 int Date::createDate_Time(){
     this->date_time = this->date + " " + this->time + this->am_pm;
     return 0;
+}
+
+void Date::updateClass() {
+    createDate();
+    createTime();
+    createDate_Time();
+    return;
 }
 
 //Newer than
@@ -168,11 +180,11 @@ Date& Date::operator=(Date& other){
     return *this;
 }
 
-bool isLeapYear(){
+bool Date::isLeapYear() const{
     return(this->year % 4);
 }
 
-int daysInMonth(){
+int Date::daysInMonth() const{
     if(this->month == 2)
         return isLeapYear() ? 29 : 28;
     else if(this->month == 4 || this->month == 6 || this->month == 9|| this->month == 11)
@@ -181,7 +193,7 @@ int daysInMonth(){
         return 31;
 }
 //Returns the day of the week, where 0 = Sunday, 1 = Monday ... 6 = Saturday
-int dayOfWeek(){
+int Date::dayOfWeek() const{
     int y = this->year, m = this->month, dayOfWeek;
     if(m < 3){
         m += 12;
@@ -193,19 +205,20 @@ int dayOfWeek(){
     return dayOfWeek;
 }
 
-int addDays(int daysToAdd){
+int Date::addDays(int daysToAdd) {
     int daysAdded = 0;
-    while(daysAdded < daysToAdd){
+    while (daysAdded < daysToAdd) {
         this->day++;
-        if(day > (daysInMonth())){
+        if (day > (daysInMonth())) {
             this->day = 1;
             this->month++;
-            if(this->month > 12){
-                this->month = 1; 
+            if (this->month > 12) {
+                this->month = 1;
                 this->year++;
             }
-       }
-       if (daysOfWeek() != 0) //Remmeber, 0 = Sunday
+        }
+        if (dayOfWeek() != 0) //Remmeber, 0 = Sunday
             daysAdded++;
     }
+    updateClass();
 }

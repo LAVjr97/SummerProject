@@ -17,7 +17,7 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
     std::array<std::tuple<int, double>, 8> articles;
     double cost = 0.99;
-    int customerID = 1;
+    int customerID = 0;
 
 
     //Customer Info
@@ -51,7 +51,7 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     /**have the stored customer info pulled up (name and customerID)**/
 
     //Order Info
-    cout << "\nPick Up Day? <mm/dd/yy>\n";
+    /*cout << "\nPick Up Day? <mm/dd/yy>\n";
 
     cin >> date;
 
@@ -59,7 +59,7 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     cin >> time;
 
     pickUp = date + " " + time;
-
+    */
     articles = handleArticles(); 
 
 
@@ -96,7 +96,9 @@ int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cus
     for(i = 0; i < order.size(); i++){ 
         std::cout << "\n" << order[i].getCustomerID() << "\n";
 
-        std::cout <<"\n" << order[i].getName() << "\n";
+        std::cout << "\n" << order[i].getName() << "\n";
+
+        std::cout << std::endl << order[i].pickUp->getDate_Time() << std::endl;
 
     }
     return 0;

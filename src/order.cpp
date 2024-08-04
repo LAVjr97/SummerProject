@@ -29,6 +29,8 @@ order::order(int orderID, std::string firstName, std::string lastName, int custo
     this->cost = cost;
     this->rackNumber = -1;
     this->pickedUp = false;
+    this->dropOff = new date::Date();
+    this->pickUp = new date::Date(3);
 }
 
 order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
@@ -137,7 +139,7 @@ int order::setRack(int rack){
 }
 
 int order::setPickUp(bool pickUp){
-    this->pickedUp = pickUp;s
+    this->pickedUp = pickUp;
     return 0;
 }
 
