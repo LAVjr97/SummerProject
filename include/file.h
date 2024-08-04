@@ -22,16 +22,6 @@ namespace fi{
             static std::unordered_map<int, std::vector<orderInfo::order>> loadOrders(const std::string& filename); 
     };
 
-    class system{
-        public: 
-            
-        private: 
-            int totalCustomers; 
-            int totalOrders;
-            double total; 
-
-    };
-
 }
 
 #endif
