@@ -1,3 +1,6 @@
+#ifndef DATE_H
+#define DATE_H
+
 #include "main.h"
 
 namespace date{
@@ -5,6 +8,7 @@ namespace date{
         public:
             Date();
             Date(int n);
+            Date(int day, int month, int year, int hour, int min, std::string am_pm);
 
             //get functions 
             int getDay() const;
@@ -64,3 +68,4 @@ namespace date{
             
     };
 }
+#endif

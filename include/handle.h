@@ -6,6 +6,7 @@
 #include "../include/order.h"
 #include "../include/customer.h"
 #include "../include/search.h"
+#include "file.h"
 
 
 
@@ -15,13 +16,11 @@ namespace menu{
     class options{
         public: 
             //Static functions, functions to be used through out run time. 
-            static int handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers);
-            static int handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers);
-            static int handleLookUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers);
-            static int handleHistory(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers);
+            static int handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager);
+            static int handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager);
+            static int handleLookUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager);
+            static int handleHistory(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager);
             static std::array<std::tuple<int, double>, 8> handleArticles();
-
-            static std::string getDate();
 
         private: 
 

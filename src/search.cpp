@@ -34,7 +34,7 @@ std::vector<orderInfo::order> Search::searchName(const std::string& entry, const
 
     for(i = 0; i < orders.size(); i++){
         if(orders[i].getName() == entry){
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDropOffDate(), orders[i].getPickUpDate(), orders[i].getDetails(), orders[i].getCost());
+            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
         }
     } 
 
@@ -47,7 +47,7 @@ std::vector<orderInfo::order> Search::searchLastName(const std::string& entry, c
 
     for(i = 0; i < orders.size(); i++){
         if(orders[i].getLastName() == entry){
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDropOffDate(), orders[i].getPickUpDate(), orders[i].getDetails(), orders[i].getCost());
+            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
         }
     }
 
@@ -70,7 +70,7 @@ std::vector<orderInfo::order> Search::searchOrder(const std::string& entry, cons
         if(orders[i].getOrderID() == id){
             std::cout << "In if statement, i: " << i << " j: " << j << "\n";
 
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDropOffDate(), orders[i].getPickUpDate(), orders[i].getDetails(), orders[i].getCost());
+            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
             break;
         }
     }

@@ -17,5 +17,6 @@
 #include <regex>
 #include <cctype>
 #include <regex>
+#include <sstream>
 
 #endif

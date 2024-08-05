@@ -2,7 +2,99 @@
 
 using namespace fi;
 
-void file::saveCustomers(const std::vector<cust::customer>& customers, const std::string& filename){
+//Constructors
+File::File(std::string customerFile, std::string orderFile, std::vector<cust::customer>& customers, std::vector<orderInfo::order>& orders) : customerFile(customerFile), orderFile(orderFile), customers(customers), orders(orders)
+{}
+
+void File::saveCustomers(cust::customer& customer) const{
+    std::ofstream ofs(this->customerFile, std::ios::app);
+    std::cout << std::endl << "In saveCustomers" << std::endl;
+    
+    if (!ofs) {
+        std::cerr << "Error opening file to write to: " << this->customerFile << std::endl;
+        return;
+    }
+    std::cout << std::endl << "before saving to customers.txt" << std::endl;
+
+    ofs << customer.getCustomerID() << ","
+        << customer.getFirstName() << ","
+        << customer.getLastName() << ","
+        << customer.getPhone() << ","
+        << customer.getTotal() << ","
+        << customer.getVisit() << std::endl;
+    ofs.close();
+    return;
+}
+
+void File::loadCustomers(){
+    int id, visits, total;
+    std::string line, firstName, lastName, phone, temp; //using a temp variable because not everything that is being read from the file will be a string.
+
+    std::ifstream ifs(this->customerFile);
+    if (!ifs) {
+        std::cerr << "Error opening file to write to: " << this->customerFile << std::endl;
+        return;
+    }
+    std::cout << std::endl << "Before while loop that reads file" << std::endl;
+
+    while (std::getline(ifs, line)) {
+        std::cout << std::endl << "In while loop that reads file" << std::endl;
+        std::stringstream ss(line);
+
+        std::getline(ss, temp, ',');
+        id = std::stoi(temp);
+        std::cout << std::endl << id << std::endl;
+        std::getline(ss, firstName, ',');
+        std::getline(ss, lastName, ',');
+        std::getline(ss, phone, ',');
+        std::getline(ss, temp, ',');
+        total = std::stoi(temp);
+        std::getline(ss, temp, ',');
+        visits = std::stoi(temp);
+
+        customers.emplace_back(id, firstName, lastName, phone, visits, total);
+    }
+
+    ifs.close();
+}
+
+void File::saveOrders(orderInfo::order &order) const{
+    std::ofstream ofs(this->orderFile, std::ios::app);
+    std::cout << std::endl << "In saveOrders" << std::endl;
+
+    if (!ofs) {
+        std::cerr << "Error opening file to write to: " << this->orderFile << std::endl;
+        return;
+    }
+    
+    ofs << order.getCustomerID() << ","
+        << order.getOrderID() << ","
+        << order.getFirstName() << ","
+        << order.getLastName() << ","
+        << order.getCost() << ","
+        << order.getRack() << ","
+        << order.getPickUp() << ","
+        << order.dropOff->getDay() << ","
+        << order.dropOff->getMonth() << ","
+        << order.dropOff->getYear() << ","
+        << order.dropOff->getHour() << ","
+        << order.dropOff->getMin() << ","
+        << order.dropOff->getAm_Pm() << ","
+        << order.pickUp->getDay() << ","
+        << order.pickUp->getMonth() << ","
+        << order.pickUp->getYear() << ","
+        << order.pickUp->getHour() << ","
+        << order.pickUp->getMin() << ","
+        << order.pickUp->getAm_Pm() << ",";
+    ofs.close();
+    return;
+}
+
+void File::loadOrders() {
+    //When .emplace_back is being used, the first and last name will be using the address of the variables from that customer's object in case any changes are made to the class, its reflected in the order class.
+}
+
+/*void file::saveCustomers(const std::vector<cust::customer>& customers, const std::string& filename) {
     std::ofstream ofs(filename, std::ios::binary);
     if(!ofs){
         //cerr -> means a character error.
@@ -63,7 +155,7 @@ void file::saveOrders(const std::unordered_map<int, std::vector<orderInfo::order
             order.serialize(ofs); 
             
     }
-    */
+    
     return;
 }
 
@@ -93,3 +185,4 @@ std::unordered_map<int, std::vector<orderInfo::order>> file::loadOrders(const st
     }
     return orders;
 }
+*/

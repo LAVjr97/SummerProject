@@ -7,17 +7,17 @@
 
 using namespace menu;
 
-int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
     //Clear the Screen
     system(screen);
     cout << "\nhandleDropOff";
 
     //Initialize variables
     //cust::customer* customerA;
-    std::string dropOff = options::getDate(), date, time, pickUp, firstName, lastName, firstTime, number;
-    std::array<std::tuple<int, double>, 8> articles;
-    double cost = 0.99;
-    int customerID = 0;
+    std::string date, time, firstName, lastName, firstTime, number; 
+    std::array<std::tuple<int, double>, 8> articles; 
+    double cost = 0.99; 
+    int customerID = 0; 
 
 
     //Customer Info
@@ -41,7 +41,9 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
         cout << customerID;
            
         customers.emplace_back(customerID, firstName, lastName, number);
-        cout << "\n" << customers[customerID].getCustomerID();
+        std::cout << std::endl << "before going to SaveCustomers()" << std::endl;
+        manager.saveCustomers(customers[customerID]); 
+        cout << "\n" << customers[customerID].getCustomerID(); 
     }
     //Already a pre-existing customer
     else {
@@ -66,8 +68,8 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     int orderID = orders.size(); 
     cout << orderID;
     //orderInfo::order* orderA = new orderInfo::order(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
-    orders.emplace_back(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
-
+    orders.emplace_back(orderID, customers[customerID].getFirstName(), customers[customerID].getLastName(), customerID, articles);
+    manager.saveOrders(orders[orderID]);
     cout << "\n" << orders[orderID].getOrderID();
     
     //cout << "\n" << orderA->getCustomerID();
@@ -81,7 +83,7 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     return 0;
 }
 
-int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
     std::string entry;
     search::Search search;
     std::vector<orderInfo::order> order;
@@ -94,23 +96,23 @@ int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cus
     order = search.searchAlgo(entry, orders);
     std::cout << "\nAfter SearchAlgo\n";
     for(i = 0; i < order.size(); i++){ 
-        std::cout << "\n" << order[i].getCustomerID() << "\n";
+        //std::cout << "\n" << order[i].getCustomerID() << "\n";
+        std::cout << std::endl << customers[i].getName() << std::endl;
+        //std::cout << "\n" << order[i].getName() << "\n";
 
-        std::cout << "\n" << order[i].getName() << "\n";
-
-        std::cout << std::endl << order[i].pickUp->getDate_Time() << std::endl;
+        //std::cout << std::endl << order[i].pickUp->getDate_Time() << std::endl;
 
     }
     return 0;
 }
 
-int options::handleLookUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+int options::handleLookUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
     system(screen);
     cout << "\nhandleLookUp";
     return 0;
 }
 
-int options::handleHistory(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers) {
+int options::handleHistory(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
     system(screen);
     cout << "\nhandleDropOff";
     return 0;
@@ -123,7 +125,7 @@ std::array<std::tuple<int, double>, 8> options::handleArticles() {
     int article, n;
 
     while(true){
-        system(screen);
+        //system(screen);
         cout << "\nEnter article number (or '0' to go save and return):\n1) Shirts\n2) Pants\n3) Sweaters\n4) Coats\n5) Blouses\n6) 2pc Suit\n7) Jackets\n7) Vest\n";
         cin >> article;
 
@@ -186,26 +188,3 @@ std::array<std::tuple<int, double>, 8> options::handleArticles() {
 }
 
 //Returns the current date and time, Foramatted: mm/dd/yy hh:mm <am/pm>
-/*std::string options::getDate() {
-    std::time_t currentTime = std::time(nullptr);
-    std::tm* localTime = std::localtime(&currentTime); 
-    int year = localTime->tm_year - 100; //tm_year returns the year starting from 1900, so 2024 is 124 - 100 = 24
-    int month = localTime->tm_mon + 1;
-    int day = localTime->tm_mday;
-    int hour = localTime->tm_hour; 
-
-    int minute = localTime->tm_min;
-    static std::string temp;
-
-    //Sets the time to am or pm depending on the time of day. 
-    if (hour > 12) { 
-        hour = hour % 12;
-        temp = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year) + " " + std::to_string(hour) + ":" + std::to_string(minute) + "pm";
-    }
-    else 
-        temp = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year) + " " + std::to_string(hour) + ":" + std::to_string(minute) + "am";
-    
-    //std::string* date = &temp;
-    return temp;
-}
-*/

@@ -11,6 +11,16 @@ Date::Date(int n) {
     addDays(n);
 }
 
+Date::Date(int day, int month, int year, int hour, int min, std::string am_pm) {
+    this->day = day;
+    this->month = month;
+    this->year = year;
+    this->hour = hour;
+    this->min = min;
+    this->am_pm = am_pm;
+    updateClass();
+}
+
 //Get functions
 int Date::getDay() const{
     return this->day;
@@ -125,10 +135,11 @@ int Date::createDate() {
 
 int Date::createTime() {
     this->time = std::to_string(this->hour) + ":" + std::to_string(this->min) + this->am_pm;
+    return 0;
 }
 
 int Date::createDate_Time(){
-    this->date_time = this->date + " " + this->time + this->am_pm;
+    this->date_time = this->date + " " + this->time;
     return 0;
 }
 
@@ -221,5 +232,6 @@ int Date::addDays(int daysToAdd) {
             daysAdded++;
     }
     updateClass();
+    return 0;
 }
 

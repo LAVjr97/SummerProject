@@ -11,15 +11,24 @@
 #include "order.h"
 
 namespace fi{
-    class file{
+    class File{
         public: 
+            //Constructor
+            File(std::string customerFile, std::string orderFile, std::vector<cust::customer> &customers, std::vector<orderInfo::order> &orders);
+
             //Customers
-            static void saveCustomers(const std::vector<cust::customer>& customers, const std::string& filename);
-            static std::vector<cust::customer> loadCustomers(const std::string& filename);
+            void saveCustomers(cust::customer &customer) const; //save 1 customer at a time;
+            void loadCustomers(); //load all of the customers at a time
 
             //Orders  
-            static void saveOrders(const std::unordered_map<int, std::vector<orderInfo::order>>& orders, const std::string& filename);
-            static std::unordered_map<int, std::vector<orderInfo::order>> loadOrders(const std::string& filename); 
+            void saveOrders(orderInfo::order &order) const; //save 1 order at a time
+            void loadOrders(); 
+
+            std::string customerFile;
+            std::string orderFile;
+
+            std::vector<cust::customer> &customers;
+            std::vector<orderInfo::order> &orders;
     };
 
 }

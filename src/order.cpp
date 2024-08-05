@@ -3,48 +3,50 @@
 using namespace orderInfo;
 
 //Constructor
-order::order(std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
-    this->orderID = order::generateOrderID(); 
-    this->firstName = firstName;
-    this->lastName = lastName;
-    this->customerID = customerID;
-    this->dropOffDate = dropOff; 
-    this->pickUpDate = pickUp; 
+order::order(std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles) : firstName(firstName), lastName(lastName){
     this->articles = articles; 
+    this->customerID = customerID;
     this->cost = 0;
     this->rackNumber = -1;
     this->pickedUp = false;
     // generate cost;
- 
 } 
 
-order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles, double cost) {
+order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles, double cost) : firstName(firstName), lastName(lastName){
     this->orderID = orderID;
-    this->firstName = firstName;
-    this->lastName = lastName;
     this->customerID = customerID;
-    this->dropOffDate = dropOff;
-    this->pickUpDate = pickUp;
     this->articles = articles;
     this->cost = cost;
     this->rackNumber = -1;
     this->pickedUp = false;
     this->dropOff = new date::Date();
-    this->pickUp = new date::Date(3);
+    this->pickUp = new date::Date(2);
 }
 
-order::order(int orderID, std::string firstName, std::string lastName, int customerID, std::string dropOff, std::string pickUp, std::array<std::tuple<int, double>, 8> articles){
+order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles) : firstName(firstName), lastName(lastName){
     this->orderID = orderID; 
-    this->firstName = firstName;
-    this->lastName = lastName;
     this->customerID = customerID;
-    this->dropOffDate = dropOff; 
-    this->pickUpDate = pickUp; 
     this->articles = articles; 
     this->cost = 0; 
     this->rackNumber = -1;
     this->pickedUp = false;
 } 
+
+order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, double cost, int rack, bool pickedUp, int dropOffDay, int dropOffMonth, int dropOffYear, int dropOffHour, int dropOffMin, std::string dropOffAm_Pm, int pickUpDay, int pickUpMonth, int pickUpYear, int pickUpHour, int pickUpMin, std::string pickUpAm_Pm) : firstName(firstName), lastName(lastName) {
+    this->orderID = orderID;
+    this->customerID = customerID;
+    this->cost = cost;
+    this->rackNumber = rack;
+    this->pickedUp = pickedUp;
+    this->dropOff = new date::Date(dropOffDay, dropOffMonth, dropOffYear, dropOffHour, dropOffMin, dropOffAm_Pm);
+    this->pickUp = new date::Date(pickUpDay, pickUpMonth, pickUpYear, pickUpHour, pickUpMin, pickUpAm_Pm);
+}
+
+/*order::~order() {
+    delete this->dropOff;
+    delete this->pickUp;
+}*/
+
 
 /*Get Functions*/
 int order::getCustomerID() const{ 
@@ -67,14 +69,14 @@ std::string order::getFirstName() const{
 std::string order::getLastName() const{
     return lastName;
 }
-
+/*
 std::string order::getDropOffDate() const{
     return dropOffDate; 
 }
 
 std::string order::getPickUpDate() const{
     return pickUpDate;
-}
+}*/
 
 std::array<std::tuple<int, double>, 8> order::getDetails() const{
     return articles;
@@ -112,7 +114,7 @@ int order::setLastName(std::string lastName){
     this->lastName = lastName;
     return 0;
 }
-
+/*
 int order::setDropOffDate(std::string date){
     this->dropOffDate = date;
     return 0;
@@ -121,7 +123,7 @@ int order::setDropOffDate(std::string date){
 int order::setPickUpDate(std::string date){
     this->pickUpDate = date;
     return 0;
-}
+}*/
 
 int order::setDetails(std::array<std::tuple<int, double>, 8> articles){
     this->articles = articles;
@@ -170,6 +172,7 @@ order& order::operator=(const order& other){
 
 
 //Serialize functions
+/*
 void order::serialize(std::ofstream& ofs) const{
     //size_t = unsigned integer type of the result of sizeof, ofs = filename
     size_t nameSize = firstName.size();
@@ -188,7 +191,7 @@ void order::serialize(std::ofstream& ofs) const{
     DO THE REST HERE 
 
 
-*/
+
 
 }
 orderInfo::order order::deserialize(std::ifstream& ifs){
@@ -237,4 +240,4 @@ orderInfo::order order::deserialize(std::ifstream& ifs){
    
     return orderInfo::order(orderId, firstName, lastName, customerId, dropOffDate, pickUpDate, articles);
 
-}
+}*/
