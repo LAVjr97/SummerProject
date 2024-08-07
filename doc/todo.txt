@@ -2,4 +2,4 @@
 #2: Proper seperation between laundry, dry Cleaning, and Alterations
 #3: Generate Costs
 #4: When a returning customer is having an order, search for the customer through their customer ID, last Name and matching first name, phone, etc.. and then go on to take the order.
-#5: Fix how customers are loaded, customer IDs are repeating after shutting down and starting again
+#5: 

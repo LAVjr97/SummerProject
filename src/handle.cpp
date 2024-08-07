@@ -8,17 +8,16 @@
 using namespace menu;
 
 int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
-    //Clear the Screen
     system(screen);
     cout << "\nhandleDropOff";
 
     //Initialize variables
-    //cust::customer* customerA;
     std::string date, time, firstName, lastName, firstTime, number; 
     std::array<std::tuple<int, double>, 8> articles; 
     double cost = 0.99; 
     int customerID = 0; 
-
+    search::Search search;
+    std::vector<cust::customer> customer;
 
     //Customer Info
     cout << "\nIs this a first-time cusomter? <Yes/No>\n";
@@ -47,21 +46,9 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     }
     //Already a pre-existing customer
     else {
-        //search algo in customer container to retrieve the customer ID.
+        customer = search.searchCustAlgo(lastName, customers);
 
     }
-    /**have the stored customer info pulled up (name and customerID)**/
-
-    //Order Info
-    /*cout << "\nPick Up Day? <mm/dd/yy>\n";
-
-    cin >> date;
-
-    cout << "\nPick Up Time? <hh:mm<am/pm>>\n";
-    cin >> time;
-
-    pickUp = date + " " + time;
-    */
     articles = handleArticles(); 
 
 
@@ -90,10 +77,10 @@ int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cus
     int i;
     system(screen);
     cout << "\nhandlePickUp";
-    cout << "\n What is the name, last name or order ID that belongs to the order? \n";
+    cout << "\nWhat is the name, last name or order ID that belongs to the order? \n";
     cin >> entry;
     
-    order = search.searchAlgo(entry, orders);
+    order = search.searchOrderAlgo(entry, orders);
     std::cout << "\nAfter SearchAlgo\n";
     for(i = 0; i < order.size(); i++){ 
         //std::cout << "\n" << order[i].getCustomerID() << "\n";

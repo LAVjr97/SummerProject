@@ -18,18 +18,26 @@ namespace search{
             //search customer
             //search order
             //search by phone
-            std::vector<orderInfo::order> searchAlgo(const std::string& entry, std::vector<orderInfo::order> &orders);
-            std::vector<orderInfo::order> searchName(const std::string& entry, const std::vector<orderInfo::order> &orders);
-            std::vector<orderInfo::order> searchLastName(const std::string& entry, const std::vector<orderInfo::order> &orders);
+            std::vector<cust::customer> searchCustAlgo(const std::string& entry, std::vector<cust::customer>& customers);
+            std::vector<cust::customer> searchCustName(const std::string& entry, std::vector<cust::customer>& customers);
+            std::vector<cust::customer> searchCustLastName(const std::string& entry, std::vector<cust::customer>& customers);
+            //std::vector<cust::customer> searchCustPhone(const std::string& entry, std::vector<cust::customer>& customers);
+            std::vector<cust::customer> searchCustID(const std::string& entry, std::vector<cust::customer>& customers);
+
+
+
+            std::vector<orderInfo::order> searchOrderAlgo(const std::string& entry, std::vector<orderInfo::order> &orders);
+            std::vector<orderInfo::order> searchOrderName(const std::string& entry, const std::vector<orderInfo::order> &orders);
+            std::vector<orderInfo::order> searchOrderLastName(const std::string& entry, const std::vector<orderInfo::order> &orders);
             //std::vector<orderInfo::order> searchPhone(const std::string& entry, const std::vector<orderInfo::order> &orders);
-            std::vector<orderInfo::order> searchOrder(const std::string& entry, const std::vector<orderInfo::order> &orders);
+            std::vector<orderInfo::order> searchOrderID(const std::string& entry, const std::vector<orderInfo::order> &orders);
             
 
             //Determining Functions
             bool isNameWithSpace(const std::string& entry);
             bool isName(const std::string& entry);
             bool isPhoneNumber(const std::string& entry);
-            bool isOrderID(const std::string& entry);
+            bool isID(const std::string& entry);
 
         private: 
             //last accessed 
