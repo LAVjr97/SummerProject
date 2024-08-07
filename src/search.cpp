@@ -59,8 +59,9 @@ std::vector<cust::customer> searchCustID(const std::string& entry, std::vector<c
     for (i = 0; i < customers.size(); i++)
         if (id == customers[i].getCustomerID()){
             customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customer[i].getTotal());
-            return customer;
+            break;
         }
+    return customer;
 }
 
 //Order search functions
