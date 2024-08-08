@@ -2,4 +2,7 @@
 #2: Proper seperation between laundry, dry Cleaning, and Alterations
 #3: Generate Costs
 #4: When a returning customer is having an order, search for the customer through their customer ID, last Name and matching first name, phone, etc.. and then go on to take the order.
-#5: 
+#5: Create an array in customers, that holds their order IDs, and update orders in the save file.
+
+8/8/24
+Updating customers line by line, left off where the customer ID is found in the file but now that line needs to be updated, so a new copy of the file has to be made so the information can be updated (pain in the ass)

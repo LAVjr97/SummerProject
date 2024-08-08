@@ -3,7 +3,7 @@
 using namespace orderInfo;
 
 //Constructor
-order::order(std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles) : firstName(firstName), lastName(lastName){
+order::order(int customerID, std::array<std::tuple<int, double>, 8> articles){
     this->articles = articles; 
     this->customerID = customerID;
     this->cost = 0;
@@ -12,7 +12,7 @@ order::order(std::string &firstName, std::string &lastName, int customerID, std:
     // generate cost;
 } 
 
-order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles, double cost) : firstName(firstName), lastName(lastName){
+order::order(int orderID, int customerID, std::array<std::tuple<int, double>, 8> articles, double cost){
     this->orderID = orderID;
     this->customerID = customerID;
     this->articles = articles;
@@ -23,7 +23,7 @@ order::order(int orderID, std::string &firstName, std::string &lastName, int cus
     this->pickUp = new date::Date(2);
 }
 
-order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles) : firstName(firstName), lastName(lastName){
+order::order(int orderID, int customerID, std::array<std::tuple<int, double>, 8> articles){
     this->orderID = orderID; 
     this->customerID = customerID;
     this->articles = articles; 
@@ -32,7 +32,7 @@ order::order(int orderID, std::string &firstName, std::string &lastName, int cus
     this->pickedUp = false;
 } 
 
-order::order(int orderID, std::string &firstName, std::string &lastName, int customerID, double cost, int rack, bool pickedUp, int dropOffDay, int dropOffMonth, int dropOffYear, int dropOffHour, int dropOffMin, std::string dropOffAm_Pm, int pickUpDay, int pickUpMonth, int pickUpYear, int pickUpHour, int pickUpMin, std::string pickUpAm_Pm) : firstName(firstName), lastName(lastName) {
+order::order(int orderID, int customerID, double cost, int rack, bool pickedUp, int dropOffDay, int dropOffMonth, int dropOffYear, int dropOffHour, int dropOffMin, std::string dropOffAm_Pm, int pickUpDay, int pickUpMonth, int pickUpYear, int pickUpHour, int pickUpMin, std::string pickUpAm_Pm){
     this->orderID = orderID;
     this->customerID = customerID;
     this->cost = cost;
@@ -58,17 +58,6 @@ int order::getOrderID() const{
     return orderID; 
 } 
 
-std::string order::getName() const{
-    return firstName + " " + lastName;
-}
-
-std::string order::getFirstName() const{
-    return firstName;
-}
-
-std::string order::getLastName() const{
-    return lastName;
-}
 /*
 std::string order::getDropOffDate() const{
     return dropOffDate; 
@@ -104,16 +93,6 @@ int order::setCustomerID(int id){
 //     this->name = name;
 //     return 0;
 // }
-
-int order::setFirstName(std::string firstName){
-    this->firstName = firstName;
-    return 0;
-}
-
-int order::setLastName(std::string lastName){
-    this->lastName = lastName;
-    return 0;
-}
 /*
 int order::setDropOffDate(std::string date){
     this->dropOffDate = date;

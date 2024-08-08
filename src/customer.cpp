@@ -52,6 +52,10 @@ std::string customer::getPhone() const{
 	return phone;
 }
 
+std::vector<int> customer::getOrders() const {
+	return orders;
+}
+
 std::string customer::getLastVisit() const{
 	return lastVisit;
 }
@@ -68,33 +72,39 @@ int customer::setCustomerID(int id) {
 	this->customerID = id; 
 	return 0;
 }
-// int customer::setName(std::string name) {
-// 	this->name = name;
-// 	return 0;
-// }
 
-int customer::setFirstName(std::string firstName){
+int customer::setFirstName(std::string firstName) {
 	this->firstName = firstName;
 	return 0;
 }
 
-int customer::setLastName(std::string lastName){
+int customer::setLastName(std::string lastName) {
 	this->lastName = lastName;
 	return 0;
 }
 
 
-int customer::setPhone(std::string phone){
+int customer::setPhone(std::string phone) {
 	this->phone = phone;
 	return 0;
 }
 
-int customer::updateLastVisit(std::string lastVisit){
+int customer::setOrders(std::vector<int> orders) {
+	this->orders = orders;
+	return 0;
+}
+
+int customer::setLatestOrder(int orderID) {
+	this->orders.emplace_back(orderID);
+	return 0;
+}
+
+int customer::updateLastVisit(std::string lastVisit) {
 	this->lastVisit = lastVisit;
 	return 0;
 }
 
-int customer::updateVisits(int visits){
+int customer::updateVisits(int visits) {
 	this->visits = visits;
 	return 0;
 }

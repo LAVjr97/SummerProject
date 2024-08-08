@@ -69,8 +69,6 @@ void File::saveOrders(orderInfo::order &order) const{
     
     ofs << order.getCustomerID() << ","
         << order.getOrderID() << ","
-        << order.getFirstName() << ","
-        << order.getLastName() << ","
         << order.getCost() << ","
         << order.getRack() << ","
         << order.getPickUp() << ","
@@ -92,6 +90,30 @@ void File::saveOrders(orderInfo::order &order) const{
 
 void File::loadOrders() {
     //When .emplace_back is being used, the first and last name will be using the address of the variables from that customer's object in case any changes are made to the class, its reflected in the order class.
+}
+
+//random functions to go to certain customers to update. 
+void File::updateCustomer(const int id) {
+    std::string current, line;
+
+    std::ifstream ifs(this->customerFile);
+    
+    if (!ifs) {
+        std::cerr << "Error opening file to write to: " << this->customerFile << std::endl;
+        return;
+    }
+
+    while (std::getline(ifs, line)) {
+        std::stringstream ss(line); //istringstream
+        std::getline(ss, current, ',');
+
+        if (std::stoi(current) == id) {
+        
+            break;
+        }
+    }
+
+    return;
 }
 
 /*void file::saveCustomers(const std::vector<cust::customer>& customers, const std::string& filename) {

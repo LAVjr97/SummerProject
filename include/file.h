@@ -24,6 +24,9 @@ namespace fi{
             void saveOrders(orderInfo::order &order) const; //save 1 order at a time
             void loadOrders(); 
 
+            //Helper Functions;
+            void updateCustomer(const int id);
+
             std::string customerFile;
             std::string orderFile;
 

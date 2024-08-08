@@ -21,13 +21,15 @@ namespace cust{
 			std::string getLastVisit() const; 
 			int getVisit() const;        
 			double getTotal() const; 
+			std::vector<int> getOrders() const;
 
 			//Set functions
 			int setCustomerID(int id);
-			//int setName(std::string name); //full name
 			int setFirstName(std::string firstName);
 			int setLastName(std::string lastName);
 			int setPhone(std::string phone);
+			int setOrders(std::vector<int> orders);
+			int setLatestOrder(int orderID);
 			int updateLastVisit(std::string lastVisit);
 			int updateVisits(int visits);
 			int updateTotal(double total);
@@ -43,6 +45,9 @@ namespace cust{
 			std::string firstName;
 			std::string lastName; 
 			std::string phone; 
+
+			std::vector<int> orders;
+
 			std::string lastVisit; 
 			int visits; 
 			double total;  

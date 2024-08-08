@@ -55,7 +55,9 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     int orderID = orders.size(); 
     cout << orderID;
     //orderInfo::order* orderA = new orderInfo::order(orderID, firstName, lastName, customerID, dropOff, pickUp, articles);
-    orders.emplace_back(orderID, customers[customerID].getFirstName(), customers[customerID].getLastName(), customerID, articles);
+    orders.emplace_back(orderID, customerID, articles);
+    customers[customerID].setLatestOrder(orderID);
+
     manager.saveOrders(orders[orderID]);
     cout << "\n" << orders[orderID].getOrderID();
     

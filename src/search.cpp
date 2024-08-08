@@ -4,6 +4,9 @@
 
 using namespace search;
 
+
+//all in one search algo
+
 //Customer search functions
 std::vector<cust::customer> Search::searchCustAlgo(const std::string& entry, std::vector<cust::customer>& customers){
     std::vector<cust::customer> customer;
@@ -31,7 +34,7 @@ std::vector<cust::customer> Search::searchCustName(const std::string& entry, std
 }
 
 
-std::vector<cust::customer> searchCustLastName(const std::string& entry, std::vector<cust::customer>& customers){
+std::vector<cust::customer> Search::searchCustLastName(const std::string& entry, std::vector<cust::customer>& customers){
     std::vector<cust::customer> customer;
     int i = 0;
 
@@ -41,7 +44,7 @@ std::vector<cust::customer> searchCustLastName(const std::string& entry, std::ve
 
     return customer;
 }
-std::vector<cust::customer> searchCustPhone(const std::string& entry, std::vector<cust::customer>& customers) {
+/*std::vector<cust::customer> Search::searchCustPhone(const std::string& entry, std::vector<cust::customer>& customers) {
     std::vector<cust::customer> customer;
     int i;
 
@@ -50,9 +53,9 @@ std::vector<cust::customer> searchCustPhone(const std::string& entry, std::vecto
             customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customer[i].getTotal());
     
     return customer;
-}
+}*/
 
-std::vector<cust::customer> searchCustID(const std::string& entry, std::vector<cust::customer>& customers) {
+std::vector<cust::customer> Search::searchCustID(const std::string& entry, std::vector<cust::customer>& customers) {
     std::vector<cust::customer> customer;
     int id = std::stoi(entry), i = 0;
 
@@ -71,46 +74,10 @@ std::vector<orderInfo::order> Search::searchOrderAlgo(const std::string& entry, 
     
     if (isID(entry)) 
         order = searchOrderID(entry, orders);
-    
-    else if(isNameWithSpace(entry))
-        order = searchOrderName(entry, orders);
-
-    else if(isName(entry))
-        order = searchOrderLastName(entry, orders);
-
-    /*else if (this->isPhoneNumber(entry)) {
-        order = this->searchPhone(entry, orders);
-    }*/
 
     std::cout << "\nleaving SearchAlgo \n";
     return order;
 }   
-
-std::vector<orderInfo::order> Search::searchOrderName(const std::string& entry, const std::vector<orderInfo::order> &orders){
-    std::vector<orderInfo::order> order;
-    int i, j = 0;
-    
-    for(i = 0; i < orders.size(); i++)
-        if(orders[i].getName() == entry)
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
-
-    return order;
-}
-
-std::vector<orderInfo::order> Search::searchOrderLastName(const std::string& entry, const std::vector<orderInfo::order> &orders){
-    std::vector<orderInfo::order> order;
-    int i, j = 0;
-
-    for(i = 0; i < orders.size(); i++)
-        if(orders[i].getLastName() == entry)
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
-
-    return order;
-}
-//std::vector<orderInfo::order> Search::searchPhone(const std::string& entry, const std::vector<orderInfo::order> &orders){
-//    std::vector<orderInfo::order> orders;
-
-//}
 
 std::vector<orderInfo::order> Search::searchOrderID(const std::string& entry, const std::vector<orderInfo::order> &orders){
     int id = stoi(entry), i, j = 0;
@@ -124,7 +91,7 @@ std::vector<orderInfo::order> Search::searchOrderID(const std::string& entry, co
         if(orders[i].getOrderID() == id){
             std::cout << "In if statement, i: " << i << " j: " << j << "\n";
 
-            order.emplace_back(orders[i].getCustomerID(), orders[i].getFirstName(), orders[i].getLastName(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
+            order.emplace_back(orders[i].getCustomerID(), orders[i].getCustomerID(), orders[i].getDetails(), orders[i].getCost());
             break;
         }
     }

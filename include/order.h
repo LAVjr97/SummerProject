@@ -8,19 +8,16 @@ namespace orderInfo{
     class order{
         public:
             //Constructor
-            order(std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles);
-            order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles, double cost);
-            order(int orderID, std::string &firstName, std::string &lastName, int customerID, std::array<std::tuple<int, double>, 8> articles);
+            order(int customerID, std::array<std::tuple<int, double>, 8> articles);
+            order(int orderID, int customerID, std::array<std::tuple<int, double>, 8> articles, double cost);
+            order(int orderID, int customerID, std::array<std::tuple<int, double>, 8> articles);
             
             //Loads orders at the start of program 
-            order(int orderID, std::string &firstName, std::string &lastName, int customerID, double cost, int rack, bool pickedUp, int dropOffDay, int dropOffMonth, int dropOffYear, int dropOffHour, int dropOffMin, std::string dropOffAm_Pm, int pickUpDay, int pickUpMonth, int pickUpYear, int pickUpHour, int pickUpMin, std::string pickUpAm_Pm);
+            order(int orderID, int customerID, double cost, int rack, bool pickedUp, int dropOffDay, int dropOffMonth, int dropOffYear, int dropOffHour, int dropOffMin, std::string dropOffAm_Pm, int pickUpDay, int pickUpMonth, int pickUpYear, int pickUpHour, int pickUpMin, std::string pickUpAm_Pm);
 
             //Get functions, set to const to insure that data isn't being changed
             int getCustomerID() const;
             int getOrderID() const;
-            std::string getName() const;
-            std::string getFirstName() const;
-            std::string getLastName() const;
             //std::string getDropOffDate() const;
             //std::string getPickUpDate() const;
             std::array<std::tuple<int, double>, 8> getDetails() const;
@@ -31,8 +28,6 @@ namespace orderInfo{
 
             //Set functions 
             int setCustomerID(int id);
-            int setFirstName(std::string firstName);
-            int setLastName(std::string lastName); 
             //int setDropOffDate(std::string date); 
             //int setPickUpDate(std::string date); 
             int setDetails(std::array<std::tuple<int, double>, 8> articles);
@@ -55,9 +50,6 @@ namespace orderInfo{
         private: 
             int customerID;
             int orderID;
-
-            std::string &firstName;
-            std::string &lastName;
 
             //Dates and time will be Chars to keep it simple 
             //mm/dd/yy
