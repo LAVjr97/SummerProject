@@ -3,7 +3,7 @@
 using namespace fi;
 
 //Constructors
-File::File(std::string customerFile, std::string orderFile, std::vector<cust::customer>& customers, std::vector<orderInfo::order>& orders) : customerFile(customerFile), orderFile(orderFile), customers(customers), orders(orders)
+File::File(std::string customerFile, std::string orderFile, std::string tempFile, std::vector<cust::customer>& customers, std::vector<orderInfo::order>& orders) : customerFile(customerFile), orderFile(orderFile), tempFile(tempFile), customers(customers), orders(orders)
 {}
 
 void File::saveCustomers(cust::customer& customer) const{
@@ -97,11 +97,15 @@ void File::updateCustomer(const int id) {
     std::string current, line;
 
     std::ifstream ifs(this->customerFile);
-    
+    std::ofstream tempFile("temp.txt");
+
+
+
     if (!ifs) {
         std::cerr << "Error opening file to write to: " << this->customerFile << std::endl;
         return;
     }
+
 
     while (std::getline(ifs, line)) {
         std::stringstream ss(line); //istringstream
