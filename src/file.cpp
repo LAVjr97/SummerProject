@@ -108,7 +108,6 @@ void File::updateCustomer(const int id) {
         std::getline(ss, current, ',');
 
         if (std::stoi(current) == id) {
-        
             break;
         }
     }
