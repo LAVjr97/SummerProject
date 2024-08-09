@@ -22,6 +22,8 @@ namespace cust{
 			int getVisit() const;        
 			double getTotal() const; 
 			std::vector<int> getOrders() const;
+			int getOrderSize() const;
+			int getOrderID(int i) const;
 
 			//Set functions
 			int setCustomerID(int id);

@@ -10,14 +10,15 @@ using namespace search;
 //Customer search functions
 std::vector<cust::customer> Search::searchCustAlgo(const std::string& entry, std::vector<cust::customer>& customers){
     std::vector<cust::customer> customer;
-    if (isID(entry))
-        customer = searchCustID(entry, customers);
     
+    if (isName(entry))
+        customer = searchCustLastName(entry, customers);
+
+    else if (isID(entry))
+        customer = searchCustID(entry, customers);
+
     else if (isNameWithSpace(entry))
         customer = searchCustName(entry, customers);
-    
-    else if (isName(entry))
-        customer = searchCustLastName(entry, customers);
 
     return customer;
 }
@@ -28,7 +29,7 @@ std::vector<cust::customer> Search::searchCustName(const std::string& entry, std
 
     for (i = 0; i < customers.size(); i++) 
         if (entry == customers[i].getName())
-            customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customer[i].getTotal());
+            customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customers[i].getTotal());
 
     return customer;
 }
@@ -38,10 +39,11 @@ std::vector<cust::customer> Search::searchCustLastName(const std::string& entry,
     std::vector<cust::customer> customer;
     int i = 0;
 
-    for (i = 0; i < customers.size(); i++)
-        if (entry == customers[i].getLastName())
-            customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customer[i].getTotal());
-
+    for (i = 0; i < customers.size(); i++) {
+        if (entry == customers[i].getLastName()) {
+            customer.emplace_back(customers[i].getCustomerID(), customers[i].getFirstName(), customers[i].getLastName(), customers[i].getPhone(), customers[i].getVisit(), customers[i].getTotal());
+        }
+    }
     return customer;
 }
 /*std::vector<cust::customer> Search::searchCustPhone(const std::string& entry, std::vector<cust::customer>& customers) {
@@ -70,7 +72,6 @@ std::vector<cust::customer> Search::searchCustID(const std::string& entry, std::
 //Order search functions
 std::vector<orderInfo::order> Search::searchOrderAlgo(const std::string& entry, std::vector<orderInfo::order> &orders){
     std::vector<orderInfo::order> order;
-    std::cout << "in search Algo";
     
     if (isID(entry)) 
         order = searchOrderID(entry, orders);
@@ -112,7 +113,7 @@ bool Search::isNameWithSpace(const std::string& entry){
 }
 
 bool Search::isName(const std::string& entry){
-    std::cout << "\nIn isName function \n";
+    std::cout << "\nIn is Name function \n";
     return std::all_of(entry.begin(), entry.end(), ::isalpha);
 }
 
@@ -122,7 +123,7 @@ bool Search::isPhoneNumber(const std::string& entry){
 }
 
 bool Search::isID(const std::string& entry){
-    std::cout << "in isOrderID";
+    std::cout << "in ID";
     return std::all_of(entry.begin(), entry.end(), ::isdigit) && entry.length() <= 7;
 }
 

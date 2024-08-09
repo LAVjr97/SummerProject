@@ -95,14 +95,17 @@ void File::loadOrders() {
 //random functions to go to certain customers to update. 
 void File::updateCustomer(const int id) {
     std::string current, line;
+    bool found; 
 
     std::ifstream ifs(this->customerFile);
-    std::ofstream tempFile("temp.txt");
-
-
+    std::ofstream tempF(this->tempFile);
 
     if (!ifs) {
         std::cerr << "Error opening file to write to: " << this->customerFile << std::endl;
+        return;
+    }
+    if (!tempF) {
+        std::cerr << "Error opening file to write to: " << this->tempFile << std::endl;
         return;
     }
 
@@ -112,9 +115,31 @@ void File::updateCustomer(const int id) {
         std::getline(ss, current, ',');
 
         if (std::stoi(current) == id) {
-            break;
+            found = true;
+            tempF << customers[id].getCustomerID() << ","
+                << customers[id].getFirstName() << ","
+                << customers[id].getLastName() << ","
+                << customers[id].getPhone() << ","
+                << customers[id].getTotal() << ","
+                << customers[id].getVisit();
+
+            for (int i; i < customers[id].getOrderSize(); i++)
+                tempF << "," << customers[id].getOrderID(i);
+            tempF << std::endl;
         }
+        else
+            tempF << line << std::endl;
     }
+
+    ifs.close();
+    tempF.close();
+
+    if (found) {
+        std::remove(this->customerFile.c_str());
+        std::rename(this->tempFile.c_str(), this->customerFile.c_str());
+    }
+    else 
+        std::remove(this->tempFile.c_str());
 
     return;
 }

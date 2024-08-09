@@ -12,10 +12,10 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     cout << "\nhandleDropOff";
 
     //Initialize variables
-    std::string date, time, firstName, lastName, firstTime, number; 
+    std::string date, time, firstName, lastName, firstTime, number, choice; 
     std::array<std::tuple<int, double>, 8> articles; 
     double cost = 0.99; 
-    int customerID = 0; 
+    int customerID = 0, intChoice; 
     search::Search search;
     std::vector<cust::customer> customer;
 
@@ -33,9 +33,6 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
         cout << "\nCustomer Phone Number?\n";
         cin >> number;
         
-        //calculate customerID
-        //auto endIt = customers.end(); //last index
-        //customerID = std::distance(customers.begin(), endIt); //calculates the distance between the first and last index and subtracts 1 to return the last index, i.e. newest customer ID
         customerID = customers.size();
         cout << customerID;
            
@@ -47,7 +44,15 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
     //Already a pre-existing customer
     else {
         customer = search.searchCustAlgo(lastName, customers);
+        for (int i = 0; i < customer.size(); i++) {
+            cout << std::to_string(i + 1) << ") " << customer[i].getName() << std::endl;
+        }
 
+        std::cout << std::endl << "Which Customer is the correct one?" << std::endl;
+        cin >> choice;
+        intChoice = std::stoi(choice) - 1;
+
+        customerID = customer[intChoice].getCustomerID();
     }
     articles = handleArticles(); 
 
@@ -75,18 +80,18 @@ int options::handleDropOff(std::vector<orderInfo::order> &orders, std::vector<cu
 int options::handlePickUp(std::vector<orderInfo::order> &orders, std::vector<cust::customer> &customers, fi::File &manager) {
     std::string entry;
     search::Search search;
-    std::vector<orderInfo::order> order;
+    std::vector<cust::customer> customer;
     int i;
     system(screen);
     cout << "\nhandlePickUp";
     cout << "\nWhat is the name, last name or order ID that belongs to the order? \n";
     cin >> entry;
     
-    order = search.searchOrderAlgo(entry, orders);
+    customer = search.searchCustAlgo(entry, customers);
     std::cout << "\nAfter SearchAlgo\n";
-    for(i = 0; i < order.size(); i++){ 
+    for(i = 0; i < customer.size(); i++){ 
         //std::cout << "\n" << order[i].getCustomerID() << "\n";
-        std::cout << std::endl << customers[i].getName() << std::endl;
+        std::cout << std::endl << customer[i].getName() << std::endl;
         //std::cout << "\n" << order[i].getName() << "\n";
 
         //std::cout << std::endl << order[i].pickUp->getDate_Time() << std::endl;

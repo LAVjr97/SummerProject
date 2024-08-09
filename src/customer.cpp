@@ -8,6 +8,7 @@ using namespace cust;
 
 //Constructors
 customer::customer(int customerID, std::string firstName, std::string lastName, std::string phone, int visits, double total){
+	this->customerID = customerID;
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->phone = phone;
@@ -65,6 +66,14 @@ int customer::getVisit() const{
 }
 double customer::getTotal() const{
 	return total;
+}
+
+int customer::getOrderSize() const {
+	return this->orders.size();
+}
+
+int customer::getOrderID(int i) const {
+	return this->orders[i];
 }
 
 //Set functions
