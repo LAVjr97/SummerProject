@@ -12,11 +12,12 @@ int input(int option, vector<cust::customer> &customers, vector<orderInfo::order
 int main(){
     std::string customerFile = "C:/Users/Luis/source/repos/LAVjr97/SummerProject/data/customers.txt";
     std::string orderFile = "C:/Users/Luis/source/repos/LAVjr97/SummerProject/data/orders.txt";
+    std::string tempFile = "C:/Users/Luis/source/repos/LAVjr97/SummerProject/data/temp.txt";
 
     vector<cust::customer> customers;
     vector<orderInfo::order> orders;
 
-    fi::File manager = fi::File(customerFile, orderFile, customers, orders);
+    fi::File manager = fi::File(customerFile, orderFile, tempFile, customers, orders);
     manager.loadCustomers();
 
     int option = 0;

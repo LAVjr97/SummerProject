@@ -14,7 +14,7 @@ namespace fi{
     class File{
         public: 
             //Constructor
-            File(std::string customerFile, std::string orderFile, std::vector<cust::customer> &customers, std::vector<orderInfo::order> &orders);
+            File(std::string customerFile, std::string orderFile, std::string tempFile, std::vector<cust::customer> &customers, std::vector<orderInfo::order> &orders);
 
             //Customers
             void saveCustomers(cust::customer &customer) const; //save 1 customer at a time;
@@ -29,6 +29,7 @@ namespace fi{
 
             std::string customerFile;
             std::string orderFile;
+            std::string tempFile;
 
             std::vector<cust::customer> &customers;
             std::vector<orderInfo::order> &orders;
